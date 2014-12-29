@@ -1,0 +1,9 @@
+../../../howto.html
+../../index.html
+base.css
+index.html
+set.trailing.xml
+set.trailing.html
+set.trailing.xsl
+set.trailing.template.xsl
+set.trailing.function.xsl

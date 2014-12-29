@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="math.constant.1.xsl"?>
+<values>
+<test p="2">PI</test>
+<test p="3">PI</test>
+<test p="4">PI</test>
+<test p="8">PI</test>
+
+<test p="2">E</test>
+<test p="3">E</test>
+<test p="4">E</test>
+<test p="8">E</test>
+
+</values>

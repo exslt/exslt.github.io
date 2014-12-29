@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-05-22">
+   <module>math</module>
+   <name>power</name>
+   <meta>
+      <author email="mail@jenitennison.com" url="http://www.jenitennison.com">Jeni Tennison</author>
+      <summary>Gets the power of a number.</summary>
+   </meta>
+   <documentation>
+      The <code>math:power</code> function returns the number given as the first argument to the power of the number given as the second argument.
+   </documentation>
+   <definition>
+      <return type="number" />
+      <arg name="number" type="number" default="1" />
+      <arg name="power" type="number" default="0" />
+      <arg name="base" type="number" default="1" />
+   </definition>
+</function>

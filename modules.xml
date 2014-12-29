@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="style/home.xsl" ?>
+<exslt:modules xmlns:exslt="http://exslt.org/documentation">
+   <exslt:module prefix="exsl" />
+   <exslt:module prefix="math" />
+   <exslt:module prefix="set" />
+   <exslt:module prefix="func" />
+   <exslt:module prefix="date" />
+   <exslt:module prefix="str" />
+   <exslt:module prefix="regexp" />
+   <exslt:module prefix="dyn" />
+   <exslt:module prefix="random" />
+</exslt:modules>

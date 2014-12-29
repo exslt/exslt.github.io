@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+   <p>
+      EXSLT is a community initiative to provide extensions to XSLT.  The extensions are broken down into a number of modules, listed below.  We are trying to encourage the implementers of XSLT processors to use these extensions, so that your stylesheets can be more portable.  If your XSLT processor doesn&apos;t support a particular extension, you can <a href="download.html">download</a> packages that you can use to provide functions or templates for your stylesheets.  Have a look at the <a href="howto.html">How To...</a> page for more details about how to use the packages.
+   </p>
+   <p>
+      Anyone can contribute to EXSLT... even you.  You can contribute by commenting on the things on this site on the <a href="list">mailing list</a> and you can <a href="submissions">submit</a> your suggestions for extensions, your own implementations and test cases.  If you have any comments about the site, please <a href="mailto:managers@exslt.org">get in contact</a> with us.
+   </p>
+   <p>
+      There are two sides to this site: a set of pages for users who want to find out what extension functions and elements they can use, how to use them, who supports them, and want to download implementations of them; and a set of pages for implementers who want rigourous definitions of the extensions so that they know how to implement them.  You are currently on the user side of the site, but you can <a href="exslt.html">switch to the implementer side</a> here or from the links at the top of the module and extension pages throughout the site.
+   </p>
+   <p class="note">
+      This site is 'under construction' (isn't everywhere?).  If you have any problems using this site, please <a href="mailto:managers@exslt.org">let us know</a> and we'll do our best to remedy them.
+   </p>
+</div>

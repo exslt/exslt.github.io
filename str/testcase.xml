@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="testcase.xsl" ?>
+<div style="background-color:white;">
+	<p>This is some html</p>
+	<div style="background-color:yellow;">
+		<p>This is a yellow div</p>
+		<ul>
+			<li>list</li>
+			<li>list</li>
+			<li>list</li>
+			
+		</ul>
+	</div>
+</div>

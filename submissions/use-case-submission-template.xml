@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE use-case SYSTEM 'use-case-submission.dtd'>
+<!-- ** indicate where entries should be made ** -->
+<!-- comments indicate optional entries -->
+<use-case date="**date of submission**">
+
+   <module>**prefix for module**</module>
+   <function>**function name**</function>
+   <version>**version of function supported by implementation**</version>
+
+   <data>**filename of source XML for use case, if there is one**</data>
+   <xslt>**filename for XSLT stylesheet that uses extension function or element**</xslt>
+   <result>**filename for expected result, if there is one**</result>
+
+   <meta>
+      <author email="**email address**" 
+              url="**url**">
+         **author name**
+      </author>
+      <!--
+      <rights>
+         **copyright information**
+      </rights>
+      -->
+      <!--
+      <changes>
+         **changes since last version**
+      </changes>
+      -->
+      <!--
+      <keywords>
+         **comma-separated list of keywords**
+      </keywords>
+      -->
+      <summary>
+         <!-- if you want to use DocBook, add written-in="docbook" to summary element -->
+         **summary of use case in HTML**
+      </summary>
+   </meta>
+   <documentation>
+      <!-- if you want to use DocBook, add written-in="docbook" to documentation element -->
+      **description of use case in HTML, including other dependencies**
+   </documentation>
+
+</implementation>

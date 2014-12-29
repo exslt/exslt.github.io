@@ -1,0 +1,167 @@
+<!ENTITY % common 'exslt.dtd'>
+%common;
+<!-- function element is top-level element for function descriptions.
+     meta            - the meta information for the function 
+                       description as a whole
+     doc             - documentation for the function; each should 
+                       have a different value for xml:lang
+     template-doc    - documentation for the template version of the 
+                       function; each should have a different value 
+                       for xml:lang
+     return          - information about what the function returns
+     arg             - information about the arguments for the 
+                       function
+     implementations - information about the implementations of the 
+                       function
+     use-cases       - collection of use cases for the function -->
+<!ELEMENT function (meta, doc+, template-doc+, return, arg*, 
+                    implementations, use-cases)>
+<!-- the module attribute holds the URL of the module description -->
+<!-- the version attribute holds an integer identifying the version 
+     of the function description -->
+<!-- the status attribute describes the status of the function:
+     new         - the function has just been submitted
+     revised     - the function has just been revised
+     reviewed    - the function has been reviewed
+     implemented - the function has been implemented in several 
+                   languages
+     stable      - the function is considered stable and included in 
+                   its module -->
+<!-- ISSUE: should function element have an attribute to indicate 
+     name, given meta/dc:title holds that value? -->
+<!ATTLIST function
+   xmlns    CDATA    'http://www.exslt.org/documentation'
+   module   NMTOKEN  #REQUIRED
+   version  CDATA    #REQUIRED
+   status   (new|revised|reviewed|implemented|stable) 'new'>
+
+<!-- the return element specifies the return value of the function -->
+<!ELEMENT return (doc*)>
+<!ATTLIST return
+   type  (boolean|number|string|node-set|RTF|foreign) #REQUIRED>
+
+<!-- the arg element specifies an argument of the function or a 
+     parameter of the template version of the function.  The ordering 
+     of the arg elements reflects the ordering of the arguments -->
+<!ELEMENT arg (doc*)>
+<!ATTLIST arg
+   name     NMTOKEN  #REQUIRED
+   type     (boolean|number|string|node-set|RTF|foreign) #REQUIRED
+   default  CDATA    #REQUIRED
+   optional (yes|no) 'no'>
+
+<!-- the implementations element holds a list of the implementations 
+     available for the function.  Usually there will be one or more 
+     implementations. -->
+<!ELEMENT implementations (implementation*)>
+
+<!-- the implementation element holds information about a single 
+     implementation of the function -->
+<!-- people can submit an implementation for an existing function, in which 
+     case implementation is the document element -->
+<!ELEMENT implementation (meta, prerequisite*, doc*)>
+<!-- the function attribute gives the URL of the description of the function 
+     that this is an implementation for.  This attribute should not be present 
+     if the implementation element is within a function element. -->
+<!-- the src attribute gives the URL of the code for the  
+     implementation -->
+<!-- the language attribute gives the name of the language the 
+     implementation is written in.  This should be a qualified name, 
+     one of those available for xsl:script -->
+<!-- the version attribute gives the version of the function that is 
+     supported by the implementation (not the version of the implementation) -->
+<!-- the algorithm attribute gives a description of the algorithm 
+     used in the implementation, if appropriate -->
+<!ATTLIST implementation
+   function    CDATA #IMPLIED
+   src         CDATA #REQUIRED
+   language    CDATA #REQUIRED
+   version     CDATA #REQUIRED
+   algorithm   CDATA #IMPLIED>
+
+<!-- the prerequisite element holds information about the prerequisites needed 
+     for the implementation -->
+<!ELEMENT prerequisite (#PCDATA)>
+<!-- the href attribute specifies a URL for documentation on the prerequisite 
+     (e.g. JRE 1.3, version of Python) -->
+<!ATTLIST prerequisite
+   href  CDATA    #REQUIRED>
+
+<!-- the use-cases element holds a list of the use cases available 
+     for the function.  Usually there will be one or more use cases. 
+     -->
+<!ELEMENT use-cases (use-case*)>
+
+<!-- the use-case element holds information about a use case for the 
+     function -->
+<!-- people can submit a use case for an existing function, in which case 
+     use-case is the document element -->
+<!ELEMENT use-case (meta, doc*)>
+<!-- the function attribute gives the URL of the description of the function 
+     that this is a use case for.  This attribute should not be present if the 
+     use-case element is within a function element. -->
+<!-- the type attribute gives the type of the use case:
+     example  - demonstrates basic functionality
+     boundary - demonstrates a boundary condition in one or more 
+                arguments
+     error    - demonstrates a situation in which an error is raised 
+                due to invalid inputs -->
+<!-- the template attribute is 'yes' if the use case demonstrates the 
+     use of an XSLT template rather than a function -->
+<!-- the data attribute gives the URL of some XML data that can be 
+     used as an XML source for the calling stylesheet -->
+<!-- the xslt attribute gives the URL of a calling stylesheet that demonstrates 
+     a call to a function or template -->
+<!-- the result attribute gives the URL of the output for the 
+     stylesheet given in the use case -->
+<!ATTLIST use-case
+   function CDATA                      #IMPLIED
+   type     (example|boundary|error)   'example'
+   template (yes|no)                   'no'
+   data     CDATA                      #IMPLIED
+   xslt     CDATA                      #REQUIRED
+   result   CDATA                      #IMPLIED>
+
+<!-- the template-doc element holds additional documentation about 
+     the template implementation of the function, specifically about 
+     how the node set/RTF that the template returns is constructed -->
+<!-- the content of template-doc is the same as the content of 
+     section in DocBook, and the same as the doc element -->
+<!ELEMENT template-doc (db:sectioninfo?,
+                        (db:title, db:subtitle?,   
+                         db:titleabbrev?), 
+                        (db:toc | db:lot | db:index | 
+                         db:glossary | db:bibliography)*,
+                        (((db:calloutlist | db:glosslist | 
+                           db:itemizedlist | db:orderedlist | 
+                           db:segmentedlist | db:simplelist | 
+                           db:variablelist | db:caution |  
+                           db:important | db:note | db:tip | 
+                           db:warning | db:literallayout | 
+                           db:programlisting | db:programlistingco | 
+                           db:screen | db:screenco | db:screenshot | 
+                           db:synopsis | db:cmdsynopsis | 
+                           db:funcsynopsis | db:formalpara | 
+                           db:para | db:simpara | db:address | 
+                           db:blockquote | db:graphic | db:graphicco | 
+                           db:mediaobject | db:mediaobjectco | 
+                           db:informalequation | db:informalexample | 
+                           db:informalfigure | db:informaltable | 
+                           db:equation | db:example | db:figure | 
+                           db:table | db:msgset | db:procedure | 
+                           db:sidebar | db:qandaset | db:anchor | 
+                           db:bridgehead | db:comment | 
+                           db:highlights | db:abstract | 
+                           db:authorblurb | db:epigraph | 
+                           db:indexterm)+,
+                          ((db:refentry)* |
+                           db:section*)) |
+                         (db:refentry)+ |
+                          db:section+),
+                        (db:toc | db:lot | db:index | db:glossary | 
+                         db:bibliography)*)>
+<!-- There should never be template-doc element siblings with the same 
+     xml:lang attribute value -->
+<!ATTLIST template-doc          
+   xmlns:db CDATA    ''
+   xml:lang NMTOKEN  'en'>

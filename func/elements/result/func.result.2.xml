@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/element.xsl" ?>
+<exslt:element xmlns:exslt="http://exslt.org/documentation" 
+               version="2" module="func" status="new">
+
+<exslt:name>result</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="exsl:return">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>common</dc:subject>
+   <dc:subject>result</dc:subject>
+   <dc:subject>functions</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:result.2">
+         <exslt:version>2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-02</dc:date>
+         <dc:description>Changed the name of <code>exsl:return</code> to <code>exsl:result</code>.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:result.2.1">
+         <exslt:version>2.1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-06</dc:date>
+         <dc:description><code>exsl:result</code> moved into a separate module, <a href="/func">EXSLT - Functions</a>.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:result.2.2">
+         <exslt:version>2.2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-10</dc:date>
+         <dc:description>Examples changed to reflect changes in other modules.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml">
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+         When an <code>exsl:result</code> element is instantiated, it sets the result of the function to its value.  The value of the <code>exsl:result</code> element is determined in a similar way to variable-binding elements as described in [<a class="offsite" href="http://www.w3.org/TR/xslt#variable-values">11.2 Values of Variables and Parameters</a>] of [<a href="http://www.w3.org/TR/xslt" class="offsite">XSLT</a>].
+      </p>
+      <div class="issue">
+         <p>
+            <strong>Issue: <code>exsl:result</code> name</strong> - should <code>exsl:result</code> be called exsl:return instead?
+         </p>
+         <p>
+            <strong>Issue: <code>exsl:reference-of</code></strong> - should it be possible to generate node set results by building them up gradually through an extension element such as <code>exsl:reference-of</code> (or <code>exsl:append</code> or multiple <code>exsl:result</code> elements)?  It would help give results consisting of multiple nodes from a function.  This is achievable by building an RTF with IDs pointing to the relevant nodes instead.
+         </p>
+         <p>
+            <strong>Issue: <code>exsl:result</code> parent</strong> - should the use of <code>exsl:result</code> be restricted to within <a href="../function"><code>exsl:function</code></a>?
+         </p>
+      </div>
+      <p>
+         It is an error if an <code>exsl:result</code> element is instantiated if result nodes have been generated prior to its instantiation.  Thus, the following is an unrecoverable error:
+      </p>
+      <pre class="error">
+&lt;exsl:function name="my:func">
+   &lt;foo />
+   &lt;exsl:result select="'foo'" />
+&lt;/exsl:function></pre>
+      <p>
+         It is an error if result nodes are generated following the instantiation of an <code>exsl:result</code> element.  An XSLT processor may signal the error; if it does not signal the error, then it must recover by ignoring the result nodes.  Thus, the following is an error:
+      </p>
+      <pre class="error">
+&lt;exsl:function name="my:func">
+   &lt;exsl:result select="'foo'" />
+   &lt;foo />
+&lt;/exsl:function></pre>
+      <p>
+         If an XSLT processor recovers from the error, the function is equivalent to:
+      </p>
+      <pre>
+&lt;exsl:function name="my:func">
+   &lt;exsl:result select="'foo'" />
+&lt;/exsl:function></pre>
+      <div class="issue">
+         <p>
+            <strong>Issue: RTF after <code>exsl:result</code> error</strong> - should generating result nodes after instantiating an <code>exsl:result</code> be an unrecoverable error, or a recoverable one?
+         </p>
+      </div>
+      <p>
+         It is an error if instantiating the content of the <a href="../function"><code>exsl:function</code></a> element results in the instantion of more than one <code>exsl:result</code> elements.  An XSLT processor may signal the error; if it does not signal the error, it must recover by ignoring all <code>exsl:result</code> elements after the first.
+      </p>
+      <div class="issue">
+         <p>
+            <strong>Issue: Multiple <code>exsl:result</code> error</strong> - should instantiating <code>exsl:result</code> more than once be an unrecoverable error, or a recoverable one?
+         </p>
+      </div>
+      <p>
+         The following is an error if the value of the context node when the function is called is equal to the string <code>'yes'</code>, as two <code>exsl:result</code> elements are instantiated: one within the <code>xsl:if</code> and one directly within the <a href="../function"><code>exsl:function</code></a>:
+      </p>
+      <pre class="error">
+&lt;exsl:function name="my:func1">
+   &lt;xsl:if test=". = 'yes'">
+      &lt;exsl:result select="true()" />
+   &lt;/<code>xsl:if</code>>
+   &lt;exsl:result select="false()" />
+&lt;/exsl:function></pre>
+      <p>
+         If an XSLT processor recovers from this error, the above function is equivalent to:
+      </p>
+      <pre>
+&lt;exsl:function name="my:func1">
+   &lt;xsl:choose>
+      &lt;xsl:when test=". = 'yes'">
+         &lt;exsl:result select="true()" />
+      &lt;/xsl:when>
+      &lt;xsl:otherwise>
+         &lt;exsl:result select="false()" />
+      &lt;/xsl:otherwise>
+   &lt;/xsl:choose>
+&lt;/exsl:function></pre>
+      <p>
+         It is an error if an <code>exsl:result</code> element occurs within an <code>exsl:result</code> element.  Thus the following is an error:
+      </p>
+      <pre class="error">
+&lt;exsl:function name="my:func2">
+   &lt;exsl:result>
+      &lt;exsl:result select="." />
+   &lt;/exsl:result>
+&lt;/exsl:function></pre>
+      <p>
+         It is an error if instantiating the content of a variable-binding element (i.e. <a class="offsite" href="http://www.w3.org/TR/xslt#element-variable"><code>xsl:variable</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>) results in the instantiation of an <code>exsl:result</code> element. Thus the following is an error:
+      </p>
+      <pre class="error">
+&lt;exsl:function name="my:func3">
+   &lt;xsl:variable name="foo">
+      &lt;exsl:result select="." />
+   &lt;/xsl:variable>
+&lt;/exsl:function></pre>
+      <p>
+         If no result nodes are generated during the instantiation of the function content, and no <code>exsl:result</code> element is instantiated, then the result of the function is an empty result tree fragment.
+      </p>
+
+      <h3>3.2.1 Result Values</h3>
+
+      <p>
+         The <code>exsl:result</code> element can specify the value of the variable in three alternative ways.
+      </p>
+      <ul>
+         <li>
+            <p>
+               If the <code>exsl:result</code> element has a <code>select</code> attribute, then the value of the attribute must be an expression and the returned value is the object that results from evaluating the expression. In this case, the content must be empty.
+            </p>
+         </li>
+         <li>
+            <p>
+               If the <code>exsl:result</code> element does not have a <code>select</code> attribute and has non-empty content (i.e. the <code>exsl:result</code> element has one or more child nodes), then the content of the <code>exsl:result</code> element specifies the value.  The content of the <code>exsl:result</code> element is a template, which is instantiated to give the returned value. The value is a result tree  fragment equivalent to a node-set containing just a single root node having as children the sequence of nodes produced by instantiating the template. The base URI of the nodes in the result tree fragment is the base URI of the <code>exsl:result</code> element.
+            </p>
+            <p>
+               It is an error if a member of the sequence of nodes created by instantiating the template is an attribute node or a namespace node, since a root node cannot have an attribute node or a namespace node as a child. An XSLT processor may signal the error; if it does not signal the error, it must recover by not adding the attribute node or namespace node.
+            </p>
+         </li>
+         <li>
+            <p>
+               If the <code>exsl:result</code> element has empty content and does not have a <code>select</code> attribute, then the returned value is an empty string. Thus
+            </p>
+            <pre>&lt;exsl:result /></pre>
+            <p>
+               is equivalent to
+            </p>
+            <pre>&lt;exsl:result select="''"/></pre>
+         </li>
+      </ul>
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:sequence>
+      <xs:group ref="xsl:template" />
+   </xs:sequence>
+   <xs:attribute name="select" type="xpath:expression" />
+</exslt:definition>
+
+<exslt:implementations />
+
+<exslt:use-cases />
+
+</exslt:element>

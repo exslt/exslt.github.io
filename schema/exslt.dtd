@@ -1,0 +1,123 @@
+<!-- meta element contains meta information.  What the meta 
+     information relates to depends on the parent of the meta element:
+     function       - the function description
+     implementation - the individual implementation
+     use-case       - the use case -->
+<!-- dc:title should only be present if the parent element of the 
+     meta element is the function element -->
+<!-- if no dc:rights element is specified, then public domain will be 
+     assumed -->
+<!-- ISSUE: should the meta element be an rdf:RDF element instead, 
+     with an rdf:Description element inside it that holds the content 
+     of the meta element? -->
+<!ELEMENT meta (dc:title?, dc:creator, dc:date, dc:subject*, 
+                dc:rights?)>
+<!ATTLIST meta
+   xmlns:dc    CDATA 'http://purl.org/dc/elements/1.1/'
+   xmlns:dcq   CDATA 'http://purl.org/dc/qualifiers/1.0/'>
+
+<!-- only present if its meta element parent is a child of the 
+     function element - gives the name of the function -->
+<!-- ISSUE: should we get rid of dc:title and just put an attribute 
+     on function to indicate the function name? -->
+<!ELEMENT dc:title (#PCDATA)>
+
+<!-- the semantics of dc:creator depends on its ancestry:
+     function/meta/dc:creator       - the creator of the function 
+                                      description
+     implementation/meta/dc:creator - the creator of the 
+                                      implementation
+     use-case/meta/dc:creator       - the creator of the use case -->
+<!ELEMENT dc:creator (#PCDATA)>
+<!-- both email and url are always optional.  If no-spam is 'no' then 
+     the email address will be available on web pages -->
+<!ATTLIST dc:creator
+   email    CDATA    #IMPLIED
+   url      CDATA    #IMPLIED
+   no-spam  (yes|no) 'yes'>
+
+<!-- the semantics of dc:date depends on its ancestry: 
+     function/meta/dc:date       - the date the function description 
+                                   was submitted
+     implementation/meta/dc:date - the date the implementation was 
+                                   submitted
+     use-case/meta/dc:date       - the date the use case was 
+                                   submitted -->
+<!ELEMENT dc:date (#PCDATA)>
+<!ATTLIST dc:date
+   dcq:dateType   (created)   #FIXED   'created' 
+   dcq:dateScheme (W3C-DTF)   #FIXED   'W3C-DTF'>
+
+<!-- the semantics/content of dc:subject depends on its ancestry: 
+     function/meta/dc:subject       - the subjects of the function, 
+                                      including its name, its module 
+                                      and the string 'EXSLT'
+     implementation/meta/dc:subject - the subjects of the 
+                                      implementation, including the 
+                                      function and module names, the 
+                                      string 'EXSLT' and the language 
+                                      that the implementation is 
+                                      written in
+     use-case/meta/dc:subject       - the subjects of the use case, 
+                                      including the function and 
+                                      module names, the string 
+                                      'EXSLT' and the types of the 
+                                      use case -->
+<!ELEMENT dc:subject (#PCDATA)>
+
+<!-- the semantics of dc:rights depends on its ancestry: 
+     function/meta/dc:rights       - the rights associated with the 
+                                     function description
+     implementation/meta/dc:rights - the rights associated with the 
+                                     particular implementation
+     use-case/meta/dc:rights       - the rights associated with the 
+                                     particular use case -->
+<!-- the value of dc:rights should be one of:
+     * Public Domain text ...
+     * GPL text ...
+     * GNU Public Documentation text ...
+     ...
+     -->
+<!ELEMENT dc:rights (#PCDATA)>
+
+<!-- the semantics of doc depends on its parent:
+     function       - description of the function
+     return         - description of the return value
+     arg            - description of the argument
+     implementation - description of the implementation
+     use-case       - description of the use case -->
+<!-- the content of doc is the same as the content of section in 
+     DocBook -->
+<!ELEMENT doc (db:sectioninfo?,
+               (db:title, db:subtitle?,   
+                db:titleabbrev?), 
+               (db:toc | db:lot | db:index | 
+                db:glossary | db:bibliography)*,
+               (((db:calloutlist | db:glosslist | db:itemizedlist | 
+                  db:orderedlist | db:segmentedlist | db:simplelist | 
+                  db:variablelist | db:caution |  db:important | 
+                  db:note | db:tip | db:warning | db:literallayout | 
+                  db:programlisting | db:programlistingco | 
+                  db:screen | db:screenco | db:screenshot | 
+                  db:synopsis | db:cmdsynopsis | db:funcsynopsis | 
+                  db:formalpara | db:para | db:simpara | db:address | 
+                  db:blockquote | db:graphic | db:graphicco | 
+                  db:mediaobject | db:mediaobjectco | 
+                  db:informalequation | db:informalexample | 
+                  db:informalfigure | db:informaltable | 
+                  db:equation | db:example | db:figure | db:table | 
+                  db:msgset | db:procedure | db:sidebar | 
+                  db:qandaset | db:anchor | db:bridgehead | 
+                  db:comment | db:highlights | db:abstract | 
+                  db:authorblurb | db:epigraph | db:indexterm)+,
+                 ((db:refentry)* |
+                  db:section*)) |
+                (db:refentry)+ |
+                 db:section+),
+               (db:toc | db:lot | db:index | db:glossary | 
+                db:bibliography)*)>
+<!-- There should never be doc element siblings with the same 
+     xml:lang attribute value -->
+<!ATTLIST doc          
+   xmlns:db CDATA    ''
+   xml:lang NMTOKEN  'en'>

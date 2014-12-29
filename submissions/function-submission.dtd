@@ -1,0 +1,31 @@
+<!ENTITY % exslt SYSTEM 'exslt-submission.dtd'>
+%exslt;
+
+<!ELEMENT function (module, name, meta, documentation, definition)>
+<!ATTLIST function
+   version CDATA '1'
+   date    CDATA #REQUIRED
+   status  (new|revised|implemented|stable) #IMPLIED>
+                    
+<!ELEMENT module (#PCDATA)>
+
+<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT documentation ANY>
+<!ATTLIST documentation
+   written-in (docbook|html) 'html'>
+
+<!ELEMENT definition (return, arg*)>
+
+<!ELEMENT return ANY>
+<!ATTLIST return
+   type (boolean|number|string|node-set|RTF|external) #REQUIRED
+   written-in (docbook|html) 'html'>
+
+<!ELEMENT arg ANY>
+<!ATTLIST arg
+   name CDATA #REQUIRED
+   type (boolean|number|string|node-set|RTF|external) #REQUIRED
+   optional (yes|no) 'no'
+   default CDATA #IMPLIED
+   written-in (docbook|html) 'html'>

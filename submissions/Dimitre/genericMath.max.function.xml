@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!-- <?xml-stylesheet type="text/xsl" href="../../style/function.xsl" ?> -->
+<!-- enter module prefix in module attribute -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="genericMath" status="new">
+
+<exslt:name>max</exslt:name>
+
+<!-- enter qualified name for function in ID attribute -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="genericMath:max">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>genericMath</dc:subject>
+   <dc:subject>max</dc:subject>
+   <!-- enter any other keywords in dc:subject elements -->
+   <dc:rights> 
+      'public domain'
+   </dc:rights>
+   <exslt:revision>
+      <!-- enter qualified name '.' version in ID attribute -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="genericMath:max.1">
+         <exslt:version>1</exslt:version>
+         <!-- enter email address in email attribute (optional) -->
+         <!-- enter URL in url attribute (optional) -->
+         <!-- add no-spam="no" if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="dnovatchev@yahoo.com"
+                     url="http://www.vbxml.com/">
+            Dimitre Novatchev
+         </dc:creator>
+         <dc:date>2001-05-18</dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <p>This is a generic max function that is passed a "template-pointer"
+            <br />to a template that implements the greater-than relation.
+            <br />This function is much more usable than the "standard" max() function,
+            <br />which is defined only on numerical arguments.</p>
+            <p>In a concise XSLT library there should be only one max() function -- the
+            <br />generic one. When omitting the value for the template implementing greater,
+            <br />generic max() looks like and behaves identically to the "standard" max()
+            <br />function.</p>
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the element in DocBook or XHTML Strict -->
+   <!-- <section> -->
+      <!-- enter DocBook documentation for the element -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- enter XHTML documentation for the element; use h3-h6 elements for 
+           headings -->
+       <p>The generic max() function takes two arguments -- a node-set and a
+       <br /> template match node, and returns a maximum node -- one of the
+       <br />"maximum nodes". This function has no apriori knowledge about
+       <br /> what is "greater-than" and implements the "greater-than" relation
+       <br /> by instantiating an external, user-defined template that must
+       <br /> match uniquely the value of the template-match node argument.
+       </p>
+       
+       <p>Because of the genericity of the function, it cannot return
+       <br /> the "maximum value", as the meaning of "value" for the
+       <br /> nodes of the node-set is not known in advance.
+       <br /> Also it may be the case when a comparison will not need
+       <br /> the notion of "value" in order to compare two nodes and
+       <br /> "value" for the nodes of a specific type may not exist
+       <br /> or may be too artificial.
+       </p>
+       
+       <p> When the template-match node is not provided, a default value
+       <br /> is used, which is matched by a template that implements the
+       <br /> standard ">" relation on numbers.
+       <br /> Therefore, both the "standard" max() and highest() functions
+       <br /> are a special case of the generic max() function and could be
+       <br /> omitted from a concise template library.
+       </p>
+
+       </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <!-- enter function return type in type attribute; one of:
+           boolean, number, string, node-set, RTF, foreign -->
+   <exslt:return type="node-set">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the return value in DocBook or 
+              XHTML as above -->
+         <p>The return value of the max() function is a single-node nodeset,
+         and this is a maximum node -- one of the "maximum nodes".</p>
+      </exslt:doc>
+   </exslt:return>
+   <!-- enter any arguments;
+           name = argument name
+           type = value type (boolean, number, string, node-set, RTF or foreign)
+           optional = yes or no (default is no) 
+           default = an XPath expression giving the default value -->
+   <exslt:arg name="nodes" type="node-set"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>The node-set one of whose maximum nodes must be found.</p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="greaterTemplateUID" type="node-set"
+                   optional="yes"
+                   default="'document('')/*/exsl-default-relation-gt:*[1]'">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>This argument specifies a node with a unique namespace-uri to be
+              matched by a caller-provided template that implements the
+              "greater than" relation.
+              <br />This user-provided template must have the following parameters:
+              
+              <ul>
+                <li>nodes -- a nodeset</li>
+                <li>n1-pos -- the position in $nodes of the first node
+                to be compared
+                </li>
+                <li>n2-pos -- the position in $nodes of the second node
+                to be compared
+                </li>
+              </ul>
+              </p>
+              <p>The result that this user-provided template outputs is
+              a text string that must be one of the following:
+              <ul>
+                <li>'true' -- if the first node is "greater-than" the second</li>
+                <li>'false' -- otherwise</li>
+              </ul>
+             </p>
+      </exslt:doc>
+   </exslt:arg>
+</exslt:definition>
+
+<exslt:implementations>
+   <!-- enter any implementations; see
+        http://www.exslt.org/submissions/implementation-template.xml -->
+   <exslt:implementation src="genericMath.minmax.template.xsl" language="exslt:xslt"
+                         version="1" />
+   <exslt:implementation src="genericMath.minmax.function.xsl" language="exslt:exslt"
+                         version="1" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <!-- enter any use cases; see
+        http://www.exslt.org/submissions/use-case-template.xml -->
+   <exslt:use-case type="example" data="genericMath.minmax.data.1.xml"
+                   xslt="genericMath.minmax.1.xsl"
+                   result="genericMath.minmax.result.1.xml" />
+</exslt:use-cases>
+
+</exslt:function>

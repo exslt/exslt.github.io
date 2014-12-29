@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+   <p>
+      EXSLT is an open community initiative to standardise and document extensions to XSLT.  Anyone can contribute to EXSLT... even you.  You can contribute by commenting on the things on this site on the <a href="/list">mailing list</a> and you can submit your suggestions for extensions, your own implementations and test cases.  This page describes how.
+   </p>
+   <p>
+    There are 2 ways to generate function submissions; manually or use the <a href="submission_form.html" target="_new">submission form</a>. Below are links to example xml files which will assist if you are generating the definitions by hand.
+   </p>
+   <p class="note">
+      Currently we're still just setting up the infrastructure for EXSLT, so please bear with us as we may suffer from a few teething problems at first.
+   </p>
+   <p>
+      As you might expect, this site is built on XML.  When you submit something, we have to update the XML that we have in order to incorporate it in.  Then we have to run a batch process to create all the HTML files, and upload them to the server.  You can help this process a lot if you make sure that the XML that you submit is correct and give the right names to the files that you submit.
+   </p>
+   <h3>Contents</h3>
+   <ul>
+      <li><a href="submission_form.html" target="_new">Function Submission Form</a></li>
+      <li><a href="#elements">Submitting Elements</a></li>
+      <li><a href="#functions">Submitting Functions and Templates</a></li>
+      <li><a href="#implementations">Submitting Implementations</a></li>
+      <li><a href="#use-cases">Submitting Use Cases</a></li>
+   </ul>
+
+   <h2 id="elements">Submitting Elements</h2>
+   <p>
+      <b><a href="element-submission.zip">Element submission package</a></b>
+   </p>
+   <p>
+      You can submit definitions of extension elements <!-- by filling in the <a href="element.html">function form</a> or -->by sending us XML based on <a href="element-submission-template.xml">element-submission-template.xml</a>.  <!--If you send XML, y-->You should name the file in the format:
+   </p>
+   <pre><var>module-prefix</var>.<var>element-name</var>.submission.xml</pre>
+   <p>
+      You can submit details of vendor implementations and use cases at the same time, but they're given in separate files.  If you do this, you don't have to give a <code>meta</code> element if the details are the same as the ones for the general element description.
+   </p>
+   <p>
+      Once the original description of an element has been submitted, it may be changed by one of the managers after discussion on <a href="/list">the EXSLT mailing list</a>.  If you have suggestions for changes to particular elements, you should send them to the list.  If there are any vendor implementations of the element, then changes that alter the functionality of the element will result in a change to the version number for the element.
+   </p>
+
+   <h2 id="functions">Submitting Functions and Templates</h2>
+   <p>
+      <b><a href="function-submission.zip">Function submission package</a></b>
+   </p>
+   <p>
+      The main type of material that this site contains are descriptions of functions and equivalent templates.
+   </p>
+   <p>
+      You can submit suggestions for functions and templates <!--by filling in the <a href="function.html">function form</a> or -->by sending us XML based on <a href="function-submission-template.xml">function-submission-template.xml</a>.  <!--If you send XML, y-->You should name the file in the format:
+   </p>
+   <pre><var>module-prefix</var>.<var>function-name</var>.submission.xml</pre>
+   <p>
+      You can submit details of vendor implementations and use cases at the same time, but they're given in separate files.  If you do this, you don't have to give a <code>meta</code> element if the details are the same as the ones for the general function description.
+   </p>
+   <p>
+      Once the original description of a function has been submitted, it may be changed by one of the managers after discussion on <a href="/list">the EXSLT mailing list</a>.  If you have suggestions for changes to particular functions, you should send them to the list.  If there are any implementations of the function, then changes that alter the functionality of the function will result in a change to the version number for the function.
+   </p>
+   <h2 id="implementations">Submitting Implementations</h2>
+   <p>
+      <b><a href="implementation-submission.zip">Implementation submission package</a></b>
+   </p>
+   <p>
+      If you're a vendor of an XSLT processor that supports any of these functions, please <a href="mailto:managers@exslt.org">email us</a> letting us know:
+   </p>
+   <ul>
+      <li>the name of the processor (as returned by <code>system-property('xsl:vendor')</code>)</li>
+      <li>the URL for the processor (as returned by <code>system-property('xsl:vendor-url')</code>)</li>
+      <li>the version of the processor that supports the functions</li>
+      <li>the functions that the processor supports (including version numbers)</li>
+   </ul>
+   <p>
+      If you have implementations that you want to submit for an existing function, then you can <!--either fill in the <a href="implementation.html">implementation form</a> or -->send us XML based on <a href="implementation-submission-template.xml">implementation-submission-template.xml</a>.  <!--If you send XML, y-->You should include a file giving the implementation of the function.  The name of the file should be:
+   </p>
+   <pre><var>module-prefix</var>.<var>function-name</var>.<var>language-extension</var></pre>
+   <p>
+      For example, the name of the implementation file for the Javascript version of <code>math:min</code> is <code>math.min.js</code>.
+   </p>
+   <p>
+      If the implementation is a template, then the name of the file should be:
+   </p>
+   <pre>
+<var>module-prefix</var>.<var>function-name</var>.template.xsl
+   </pre>
+   <p>
+      For example, the name of the implementation file for the template that gives the same functionality as <code>math:min</code> is <code>math.min.template.xml</code>.
+   </p>
+   <p>
+      If the implementation is in <a href="/functions">EXSLT - Functions</a>, then the name of the file should be:
+   </p>
+   <pre><var>module-prefix</var>.<var>function-name</var>.function.xsl</pre>
+   <p>
+      For example, the name of the implementation file for the EXSLT implementation of <code>math:min</code> is <code>math.min.function.xml</code>.
+   </p>
+   <p>
+      You can submit these implementations <!--by filling in the <a href="implementation.html">implementation form</a> or -->by sending us XML based on <a href="implementation-submission-template.xml">implementation-submission-template.xml</a>.  <!--If you send XML, t-->The name of the XML file should be the same as the file containing the implementation, but with a <code>.xml</code> suffix.  For example, the name of the file describing the XSLT template for <code>math:min</code> is <code>math.min.template.xsl.xml</code>.
+   </p>
+   <p>
+      Once an implementation has been submitted, anyone can submit changes to it if they send a new version of the implementation and a description of the changes they've made.  If you supply us with an email address, you'll be contacted to inform you of the changes, and if you say its OK, one of the managers will make the appropriate changes to the description of the implementation.  You may also be contacted and asked to make changes to the implementation if the function definition changes.  That's to stop the implementations getting out of date.
+   </p>
+
+   <h2 id="use-cases">Submitting Use Cases</h2>
+   <p>
+      <b><a href="use-case-submission.zip">Use case submission package</a></b>
+   </p>
+   <p>
+      The use cases for the extensions described on this site give valuable test cases for implementers and examples to people who want to use the extensions.  We welcome any use cases that you generate, especially ones that test boundary conditions for the extensions.
+   </p>
+   <p>
+      A use case is made up of three main parts:
+   </p>
+   <dl>
+      <dt>Stylesheet</dt>
+      <dd>
+         A stylesheet that uses the extension.   It may call an extension function or use an extension element or output method.
+      </dd>
+      <dt>Data</dt>
+      <dd>
+         Some XML that acts as input to the stylesheet.  You don't need to supply any data if the stylesheet runs on its own.
+      </dd>
+      <dt>Result</dt>
+      <dd>
+         Some XML that shows the output that should be generated by the stylesheet.  You don't need to supply any output if the stylesheet demonstrates an error condition where no output is generated.  Note that the output must be XML - that's just to make it possible to browse the XML on the site.
+      </dd>
+   </dl>
+   <p>
+      You can submit supplementary files if you want.  You can name any of these files however you like, but we usually use the schemes:
+   </p>
+   <pre><var>module-prefix</var>.<var>function-name</var>.<var>number</var>.xsl
+<var>module-prefix</var>.<var>function-name</var>.data.<var>number</var>.xsl
+<var>module-prefix</var>.<var>function-name</var>.result.<var>number</var>.xsl</pre>
+   <p>
+      You can submit a use case <!--by filling in the <a href="use-case.html">use-case form</a> or -->by sending us XML based on <a href="use-case-submission-template.xml">use-case-submission-template.xml</a>.  <!--If you send XML, y-->You should name the file in the format:
+   </p>
+   <pre><var>module-prefix</var>.<var>element-name</var>.use-case.<var>number</var>.xml</pre>
+   <p>
+      We won't make changes to a use case unless it no longer applies because a function's definition changes such that it's no longer an accurate demonstration of what the function does.  If you supply us with an email address, you may be contacted and asked to make these changes.
+   </p>
+</div>

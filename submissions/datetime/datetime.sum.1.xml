@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="datetime.sum.1.xsl"?>
+<values>
+	<test>2001-06-10T17:49:00-01:00</test>
+	<test>2001-10-10T17:49:00-01:00</test>
+</values>

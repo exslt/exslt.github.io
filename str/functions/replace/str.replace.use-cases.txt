@@ -1,0 +1,3 @@
+../../../howto.html
+../../index.html
+str.replace.html

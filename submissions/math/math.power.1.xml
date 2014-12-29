@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="math.power.1.xsl"?>
+<values>
+<test power="2">1</test>
+<test power="3">1</test>
+<test power="4">1</test>
+<test power="5">1</test>
+
+<test power="2">2</test>
+<test power="3">2</test>
+<test power="4">2</test>
+<test power="5">2</test>
+
+<test power="2">3</test>
+<test power="3">3</test>
+<test power="4">3</test>
+<test power="5">3</test>
+</values>

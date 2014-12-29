@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+                version="2" module="exsl" status="stable">
+
+<exslt:name>node-set</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="exsl:node-set">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>common</dc:subject>
+   <dc:subject>node-set</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:node-set.2">
+         <exslt:version>2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-04-29</dc:date>
+         <dc:description>(Changed treatment of strings, booleans and numbers - they are now converted to node sets rather than treated as an error.) - this intended change doesn't seem to have been enacted.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:node-set.2.1">
+         <exslt:version>2.1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-05-22</dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <ul>
+               <li>Added vendor implementations in Saxon 6.3 and 4XSLT</li>
+               <li>Changed status to stable</li>
+            </ul>
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:node-set.2.2">
+         <exslt:version>2.2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-06-02</dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">Added vendor implementation in jd.xslt</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:user-doc xmlns="">
+   <section>
+      <para>
+         The <function>exsl:node-set</function> function converts a result tree fragment (which is what you get when you use the content of <markup>xsl:variable</markup> rather than its <markup>select</markup> attribute to give a variable value) into a node set.  This enables you to process the XML that you create within a variable, and therefore do multi-step processing.
+      </para>
+   </section>
+</exslt:user-doc>
+
+<exslt:doc xmlns="">
+   <section>
+      <para>
+         The purpose of the <function>exsl:node-set</function> function is to convert a result tree fragment into a node set.  If the argument is a node set already, it is simply returned as is.  It is an error if the argument to <function>exsl:node-set</function> is not a node set or a result tree fragment.
+      </para>
+   </section>
+</exslt:doc>
+
+<exslt:definition>
+   <exslt:return type="node-set" />
+   <exslt:arg name="RTF" type="object" default="/.." />
+</exslt:definition>
+
+<exslt:implementations>
+   <exslt:vendor-implementation
+           version="2"
+           vendor="Fourthought Inc."
+           vendor-url="http://4Suite.org"
+           vendor-version="0.11.1" />
+   <exslt:vendor-implementation
+           version="2"
+           vendor="SAXON 6.3 from Michael Kay"
+           vendor-url="http://users.iclway.co.uk/mhkay/saxon/index.html"
+           vendor-version="6.3" />
+   <exslt:vendor-implementation
+           version="2"
+           vendor="Johannes D&#246;bler"
+           vendor-url="http://www.aztecrider.com/xslt/"
+           vendor-version="1.0.8" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <exslt:use-case type="example" data="exsl.node-set.data.1.xml" 
+                   xslt="exsl.node-set.1.xsl" 
+                   result="exsl.node-set.result.1.xml">
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:node-set.use-case.1">
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>common</dc:subject>
+         <dc:subject>node-set</dc:subject>
+         <exslt:revision>
+            <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                             xmlns:dc="http://purl.org/dc/elements/1.1/"
+                             ID="exsl:node-set.use-case.1.1">
+               <exslt:version>1</exslt:version>
+               <dc:creator email="mhkay@iclway.co.uk">Mike Kay</dc:creator>
+               <dc:date>2001-04-28</dc:date>
+               <dc:description>Tests node-set to node-set conversion.</dc:description>
+            </rdf:Description>
+         </exslt:revision>
+      </rdf:Description>
+      <exslt:doc>
+         <para>
+            This use case shows the result of using <code>exsl:node-set()</code> to convert a node set to a node set.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+   <exslt:use-case type="example" data="exsl.node-set.data.2.xml" 
+                   xslt="exsl.node-set.2.xsl" 
+                   result="exsl.node-set.result.2.xml">
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:node-set.use-case.2">
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>common</dc:subject>
+         <dc:subject>node-set</dc:subject>
+         <exslt:revision>
+            <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                             xmlns:dc="http://purl.org/dc/elements/1.1/"
+                             ID="exsl:node-set.use-case.2.1">
+               <exslt:version>1</exslt:version>
+               <dc:creator email="mhkay@iclway.co.uk">Mike Kay</dc:creator>
+               <dc:date>2001-04-28</dc:date>
+               <dc:description>Tests result tree fragment to node-set conversion.</dc:description>
+            </rdf:Description>
+         </exslt:revision>
+      </rdf:Description>
+      <exslt:doc>
+         <para>
+            This use case shows the result of using <code>exsl:node-set()</code> to convert a result tree fragment to a node set.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+</exslt:use-cases>
+
+</exslt:function>

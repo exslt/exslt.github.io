@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function.dtd'>
+<function xmlns="http://www.exslt.org/documentation" version="1"
+          module="math" status="new">
+
+<meta>
+   <dc:title>min</dc:title>
+   <dc:creator email="mail@jenitennison.com" 
+               url="http://www.jenitennison.com">
+      Jeni Tennison
+   </dc:creator>
+   <dc:date>2001-03-19</dc:date>
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>math</dc:subject>
+   <dc:subject>min</dc:subject>
+   <dc:subject>minimum</dc:subject>
+   <dc:rights>
+      Copyright (c) 2001  Dr Jeni Tennison.
+      Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License,
+      Version 1.1 or any later version published by the Free Software
+      Foundation; with no Invariant Sections, no Front-Cover Texts and
+      no Back-Cover Texts.  A copy of the license is included in the
+      section entitled "GNU Free Documentation License".
+   </dc:rights>
+</meta>
+
+<doc>
+   <db:para>
+      The <db:function>math:min</db:function> function returns the 
+      minimum, for each node in the argument node-set, of the result 
+      of converting the string-values of the node to a number using 
+      the <db:ulink URL="http://www.w3.org/TR/xpath#function-number">
+      <db:function>number</db:function></db:ulink> function.  The 
+      numbers are compared as with the <operator>&lt;</operator> 
+      operator.  If the node set is empty, 
+      <db:returnvalue>NaN</db:returnvalue> is returned.
+   </db:para>
+</doc>
+
+<template-doc>
+   <db:para>
+      The <template>math:min</template> template returns a result 
+      tree fragment whose string value is the result of turning the 
+      number returned by the function into a string.
+   </db:para>
+</template-doc>
+
+<return type="number" />
+
+<arg name="nodes" type="node-set" default="/.." />
+
+<implementations>
+   <implementation src="math.min.function.xsl" language="exslt:exslt" 
+                   version="1">
+      <meta>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>EXSLT - Functions</dc:subject>
+         <dc:subject>minimum</dc:subject>
+         <dc:rights>
+             math.min.function.xsl - an EXSLT implementation of the 
+             min function.
+             Copyright (C) 2001  Dr Jeni Tennison
+
+             This program is free software; you can redistribute it 
+             and/or modify it under the terms of the GNU General 
+             Public License as published by the Free Software 
+             Foundation; either version 2 of the License, or (at your 
+             option) any later version.
+
+             This program is distributed in the hope that it will be 
+             useful, but WITHOUT ANY WARRANTY; without even the 
+             implied warranty of MERCHANTABILITY or FITNESS FOR A 
+             PARTICULAR PURPOSE.  See the GNU General Public License 
+             for more details.
+
+             You should have received a copy of the GNU General 
+             Public License along with this program; if not, write to 
+             the Free Software Foundation, Inc., 59 Temple Place, 
+             Suite 330, Boston, MA  02111-1307  USA
+             
+             Dr Jeni Tennison - http://www.jenitennison.com - 
+             mail@jenitennison.com
+         </dc:rights>
+      </meta>
+   </implementation>
+   <implementation src="math.min.template.xsl" language="exslt:xslt" 
+                   version="1">
+      <meta>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>template</dc:subject>
+         <dc:subject>minimum</dc:subject>
+         <dc:rights>
+             math.min.template.xsl - an XSLT template implementation 
+             of the min function.
+             Copyright (C) 2001  Dr Jeni Tennison
+
+             This program is free software; you can redistribute it 
+             and/or modify it under the terms of the GNU General 
+             Public License as published by the Free Software 
+             Foundation; either version 2 of the License, or (at your 
+             option) any later version.
+
+             This program is distributed in the hope that it will be 
+             useful, but WITHOUT ANY WARRANTY; without even the 
+             implied warranty of MERCHANTABILITY or FITNESS FOR A 
+             PARTICULAR PURPOSE.  See the GNU General Public License 
+             for more details.
+
+             You should have received a copy of the GNU General 
+             Public License along with this program; if not, write to 
+             the Free Software Foundation, Inc., 59 Temple Place, 
+             Suite 330, Boston, MA  02111-1307  USA
+             
+             Dr Jeni Tennison - http://www.jenitennison.com - 
+             mail@jenitennison.com
+         </dc:rights>
+      </meta>
+   </implementation>
+   <implementation src="math.min.js" language="javascript" 
+                   version="1">
+      <meta>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>JavaScript</dc:subject>
+         <dc:subject>minimum</dc:subject>
+         <dc:rights>
+             math.min.js - a Javascript implementation of the min 
+             function.
+             Copyright (C) 2001  Dr Jeni Tennison
+
+             This program is free software; you can redistribute it 
+             and/or modify it under the terms of the GNU General 
+             Public License as published by the Free Software 
+             Foundation; either version 2 of the License, or (at your 
+             option) any later version.
+
+             This program is distributed in the hope that it will be 
+             useful, but WITHOUT ANY WARRANTY; without even the 
+             implied warranty of MERCHANTABILITY or FITNESS FOR A 
+             PARTICULAR PURPOSE.  See the GNU General Public License 
+             for more details.
+
+             You should have received a copy of the GNU General 
+             Public License along with this program; if not, write to 
+             the Free Software Foundation, Inc., 59 Temple Place, 
+             Suite 330, Boston, MA  02111-1307  USA
+             
+             Dr Jeni Tennison - http://www.jenitennison.com - 
+             mail@jenitennison.com
+         </dc:rights>
+      </meta>
+   </implementation>
+</implementations>
+
+<use-cases>
+   <use-case type="example" data="math.min.data.1.xml"
+             xslt="math.min.1.xsl" result="math.min.result.1.txt">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+   </use-case>
+   <use-case type="example" template="yes" data="math.min.data.1.xml"
+             xslt="math.min.2.xsl" result="math.min.result.1.txt">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>template</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+   </use-case>
+   <use-case type="boundary" data="math.min.data.2.xml"
+             xslt="math.min.1.xsl" result="math.min.result.2.txt">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+   </use-case>
+   <use-case type="boundary" template="yes" data="math.min.data.2.xml"
+             xslt="math.min.2.xsl" result="math.min.result.2.txt">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>template</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+   </use-case>
+   <use-case type="error" data="math.min.data.1.xml"
+             xslt="math.min.3.xsl">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+      <doc>
+         <db:para>
+            This use case shows an error when the function is passed a 
+            number as the value of the first argument.
+         </db:para>
+      </doc>
+   </use-case>
+   <use-case type="error" template="yes" data="math.min.data.1.xml"
+             xslt="math.min.4.xsl">
+      <meta>
+         <dc:title>min</dc:title>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">
+            Jeni Tennison
+         </dc:creator>
+         <dc:date>2001-03-19</dc:date>
+         <dc:subject>EXSLT</dc:subject>
+         <dc:subject>math</dc:subject>
+         <dc:subject>min</dc:subject>
+         <dc:subject>use case</dc:subject>
+         <dc:subject>example</dc:subject>
+         <dc:subject>template</dc:subject>
+         <dc:subject>minimum</dc:subject>
+      </meta>
+      <doc>
+         <db:para>
+            This use case shows an error when the function is passed a 
+            number as the value of the <parameter>nodes</parameter> 
+            parameter.
+         </db:para>
+      </doc>
+   </use-case>
+</use-cases>
+
+</function>

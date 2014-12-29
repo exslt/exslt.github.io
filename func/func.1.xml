@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../style/module.xsl" ?>
+<exslt:module xmlns:exslt="http://exslt.org/documentation"
+              version="1" prefix="func">
+
+<exslt:name>Functions</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="func">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>functions</dc:subject>
+   <dc:subject>module</dc:subject>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="func.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator>Jeni Tennison</dc:creator>
+         <dc:date>2001-03-06</dc:date>
+         <dc:description>Divided <a href="/common">EXSLT - Common</a> into two parts - this is one of them.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc>
+   <section>
+      <para>
+         EXSLT - Functions are those extension elements and functions that allow users to define their own functions for use in expressions and patterns in XSLT.
+      </para>
+   </section>
+</exslt:doc>
+
+<exslt:elements>
+   <exslt:element name="function" version="2" core="no" />
+   <exslt:element name="result" version="2" core="no" />
+</exslt:elements>
+
+</exslt:module>

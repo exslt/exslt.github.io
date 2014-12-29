@@ -1,0 +1,7 @@
+../../../howto.html
+../../index.html
+set.trailing.html
+set.trailing.use-case.1.html
+set.trailing.data.1.xml
+set.trailing.1.xsl
+set.trailing.result.1.xml

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-05-23">
+   <module>math</module>
+   <name>constant</name>
+   <meta>
+      <author email="jim.fuller@ruminate.co.uk" url="http://www.ruminate.co.uk">James Fuller</author>
+      <summary>Returns a variety of standard mathematical constants.</summary>
+   </meta>
+   <documentation>
+      The <code>math:constant</code> function returns the specified constant to a set precision.
+   </documentation>
+   <definition>
+      <return type="number" />
+      <arg name="name" type="string" default="none" />
+      <arg name="precision" type="number" default="6" />
+   </definition>
+</function>

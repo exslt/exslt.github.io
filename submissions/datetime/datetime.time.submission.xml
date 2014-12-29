@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>datetime</module>
+   <name>time</name>
+   <meta>
+      <author email="chris@bayes.co.uk" url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>Returns current time.</summary>
+   </meta>
+   <definition>
+        <return type="string"/>
+   </definition>
+</function>

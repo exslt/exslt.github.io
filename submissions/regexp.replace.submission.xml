@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<function date="2001-06-24">
+
+   <module>regexp</module>
+   <name>replace</name>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>
+         <p>Replaces according to a regular expression.</p>
+      </summary>
+   </meta>
+   <documentation>
+      <p>
+         The <code>regexp:replace</code> function replaces the parts of a string that match a regular expression with another string.
+      </p>
+      <p>
+         The first argument is the string to be matched and replaced.  The second argument is a regular expression that follows the Javascript regular expression syntax.  The fourth argument is the string to replace the matched parts of the string.
+      </p>
+      <p>
+         The third argument is a string consisting of character flags to be used by the match.  If a character is present then that flag is true.  The flags are:
+      </p>
+      <ul>
+         <li><code>g</code>: global replace - all occurrences of the regular expression in the string are replaced.  If this character is not present, then only the first occurrence of the regular expression is replaced.</li>
+         <li><code>i</code>: case insensitive - the regular expression is treated as case insensitive.  If this character is not present, then the regular expression is case sensitive.</li>
+      </ul>
+   </documentation>
+   <definition>
+      <return type="string" />
+		<arg name="string" type="string" default="''" optional="no" />
+		<arg name="regExp" type="string" default="''" optional="no" />
+		<arg name="flags" type="string" default="''" optional="no" />
+		<arg name="repStr" type="string" default="''" optional="no" />
+   </definition>
+
+</function>

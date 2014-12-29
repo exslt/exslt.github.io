@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE implementation SYSTEM 'implementation-submission.dtd'>
+<implementation date="2001-06-24">
+
+   <module>regexp</module>
+   <function>replace</function>
+   <version>1</version>
+
+   <language>exslt:javascript</language>
+   <src>regexp.replace.js</src>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+   </meta>
+
+</implementation>

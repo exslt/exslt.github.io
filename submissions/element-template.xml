@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!-- <?xml-stylesheet type="text/xsl" href="../../style/element.xsl" ?> -->
+<!-- enter module prefix in module attribute -->
+<exslt:element xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="module" status="new">
+
+<exslt:name><!-- enter element name --></exslt:name>
+
+<!-- enter qualified name for element in ID attribute -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="module:element">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject><!-- enter module prefix --></dc:subject>
+   <dc:subject><!-- enter element name --></dc:subject>
+   <!-- enter any other keywords in dc:subject elements -->
+   <!-- <dc:rights> -->
+      <!-- enter any copyright information or the key string 'public domain' -->
+   <!-- </dc:rights> -->
+   <exslt:revision>
+      <!-- enter qualified name '.' version in ID attribute -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="module:element.version">
+         <exslt:version>1</exslt:version>
+         <!-- enter email address in email attribute (optional) -->
+         <!-- enter URL in url attribute (optional) -->
+         <!-- add no-spam="no" if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="your@email.address.com" 
+                     url="http://your.website.com/">
+            <!-- enter your name -->
+         </dc:creator>
+         <dc:date><!-- enter the date in YYYY-MM-DD format --></dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <!-- enter a brief description of the element; you may use XHTML -->
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the element in DocBook or XHTML Strict -->
+   <!-- <section> -->
+      <!-- enter DocBook documentation for the element -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- enter XHTML documentation for the element; use h3-h6 elements for 
+           headings -->
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <!-- enter the content model and attributes for the element using XML Schema;
+        use xs:element/@ref and xs:attribute/@ref to specify elements and 
+        attributes; use xs:group/@ref and xs:attributeGroup/@ref to point to 
+        XSLT model groups -->
+</exslt:definition>
+
+<exslt:implementations>
+  <!-- enter any vendor implementations:
+          vendor = vendor name = system-property('xsl:vendor')
+          vendor-url = vendor URL = system-property('xsl:vendor-url')
+          vendor-version = version of XSLT processor that supports the element 
+          -->
+  <!-- <exslt:vendor-implementation version="1"
+          vendor="vendor-name"
+          vendor-url="vendor-url"
+          vendor-version="processor-version" /> -->
+</exslt:implementations>
+
+<exslt:use-cases>
+   <!-- enter any use cases; see
+        http://www.exslt.org/submissions/use-case-template.xml -->
+</exslt:use-cases>
+
+</exslt:element>

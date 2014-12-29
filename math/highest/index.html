@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - math:highest</title><link rel="stylesheet" href="/style/base.css"/></head><body><h1 id="#title"><a href="/">EXSLT</a> - <a href="/math">math</a>:<a href="/math/highest">highest</a></h1><table><tr><td id="menu"><p class="level1"><a href="/howto.html">How To</a></p><p class="level1"><a href="/download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="/exsl/">Common</a></p><p class="level2"><a href="/math/">Math</a></p><p class="level3"><a href="/math/min/">math:min()</a> (<a href="/math/min/math.min.html">Developer</a>)</p><p class="level3"><a href="/math/max/">math:max()</a> (<a href="/math/max/math.max.html">Developer</a>)</p><p class="level3"><a href="/math/highest/">math:highest()</a> (<a href="/math/highest/math.highest.html">Developer</a>)</p><p class="level3"><a href="/math/lowest/">math:lowest()</a> (<a href="/math/lowest/math.lowest.html">Developer</a>)</p><p class="level2"><a href="/set/">Sets</a></p><p class="level2"><a href="/func/">Functions</a></p><p class="level1"><a href="/submissions/">Submissions</a></p><p class="level1"><a href="/list">Mailing List</a></p><p class="level1"><a href="/contact.html">Contact</a></p></td><td id="content"><p><b>Version: </b>1<br/><b>Status: </b>new<br/><b>Function Package: </b><a href="math.highest.zip">math.highest.zip</a></p><h4>Function Syntax</h4><pre><var>node-set</var> <b>math:highest</b>(<var>node-set</var>)</pre><h4>Template Syntax</h4><pre>&lt;xsl:call-template name="<b>math:highest</b>"&gt;
+   &lt;xsl:with-param name="nodes" select="<var>node-set</var>" /&gt;
+&lt;/xsl:call-template&gt;</pre><p>
+         The <code>math:highest</code> function returns the nodes for which the result of converting the string-value of the node to a number is maximum value for the node set, as calculated with math:max.
+      </p><p>
+         The <code>math:highest</code> template returns a result tree fragment consisting of copies of the nodes as returned by the function.
+      </p><p>
+      An implementation of this extension 
+      function
+      in the EXSLT math namespace must conform to the behaviour described in this document.
+   </p><h2>Implementations</h2><p>
+         Implementations of <code>math:highest</code> are available in the following languages:
+      </p><ul><li><a href="math.highest.function.xsl">EXSLT Function</a></li><li><a href="math.highest.template.xsl">XSLT Template</a></li></ul><h2>Examples</h2><h3>element</h3><p>The following example shows how to use the <code>math:highest</code> function:</p><h4>Source</h4><pre>&lt;values&gt;
+   &lt;value id="one"&gt;7&lt;/value&gt;
+   &lt;value id="two"&gt;11&lt;/value&gt;
+   &lt;value id="three"&gt;8&lt;/value&gt;
+   &lt;value id="four"&gt;4&lt;/value&gt;
+&lt;/values&gt;</pre><h4>Stylesheet</h4><pre>&lt;xsl:template match="values"&gt;
+   &lt;result&gt;
+      &lt;xsl:text&gt;Highest: &lt;/xsl:text&gt;
+      &lt;xsl:value-of select="math:highest(value)/@id" /&gt;
+   &lt;/result&gt;
+&lt;/xsl:template&gt;</pre><h4>Result</h4><pre>&lt;result&gt;Highest: two&lt;/result&gt;</pre><h3>Template</h3><p>The following example shows how to use the <code>math:highest</code> template:</p><h4>Source</h4><pre>&lt;values&gt;
+   &lt;value id="one"&gt;7&lt;/value&gt;
+   &lt;value id="two"&gt;11&lt;/value&gt;
+   &lt;value id="three"&gt;8&lt;/value&gt;
+   &lt;value id="four"&gt;4&lt;/value&gt;
+&lt;/values&gt;</pre><h4>Stylesheet</h4><pre>&lt;xsl:template match="values"&gt;
+   &lt;result&gt;
+      &lt;xsl:text&gt;Highest: &lt;/xsl:text&gt;
+      &lt;xsl:call-template name="math:highest"&gt;
+         &lt;xsl:with-param name="nodes"
+                         select="value" /&gt;
+      &lt;/xsl:call-template&gt;
+   &lt;/result&gt;
+&lt;/xsl:template&gt;</pre><h4>Result</h4><pre>&lt;result&gt;Highest: two&lt;/result&gt;</pre></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/index.html">http://www.exslt.org/index.html</a> last modified 2001-03-28</p></div></body></html>

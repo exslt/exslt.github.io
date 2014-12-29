@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!-- ** indicate where entries should be made ** -->
+<!-- enter module prefix in module attribute of exslt:function element below -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="** module-prefix **" status="new">
+
+<exslt:name><!-- ** enter function name ** --></exslt:name>
+
+<!-- enter qualified name for function in ID attribute of rdf:Description element below -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="** module:function **">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject><!-- ** enter module prefix ** --></dc:subject>
+   <dc:subject><!-- ** enter function name ** --></dc:subject>
+   <!-- ** enter any other keywords in dc:subject elements ** -->
+   <!-- <dc:rights> -->
+      <!-- ** if you want, uncomment the dc:rights element here, and enter any copyright information or the key string 'public domain' ** -->
+   <!-- </dc:rights> -->
+   <exslt:revision>
+      <!-- enter qualified name '.' version in ID attribute of rdf:Description element below -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="** module:function.version **">
+         <exslt:version>1</exslt:version>
+         <!-- enter email address in email attribute of dc:creator element below (optional) -->
+         <!-- enter URL in url attribute of dc:creator element below (optional) -->
+         <!-- add no-spam="no" in dc:creator element below if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="** your@email.address.com **" 
+                     url="** http://your.website.com/ **">
+            <!-- ** enter your name ** -->
+         </dc:creator>
+         <dc:date><!-- ** enter the date in YYYY-MM-DD format ** --></dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <!-- ** enter a brief description of the function; you may use XHTML ** -->
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the element in DocBook or XHTML Strict -->
+   <!-- <section> -->
+      <!-- ** if you want to use DocBook, uncomment the section element here, delete the html:div element below, and enter DocBook documentation for the element here ** -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- ** if you want to use XHTML, enter XHTML documentation for the element here; use h3-h6 elements for headings ** -->
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <!-- enter function return type in type attribute of exslt:return element below; one of:
+           boolean, number, string, node-set, RTF, foreign -->
+   <exslt:return type="** return-type **">
+      <!-- <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns=""> -->
+         <!-- ** if you want to add documentation for the return value, uncomment this exslt:doc element and enter any documentation about the return value in DocBook or XHTML in the same way as above ** -->
+      <!-- </exslt:doc> -->
+   </exslt:return>
+   <!-- enter any arguments using exslt:arg elements with the following attributes;
+           name = argument name
+           type = value type (boolean, number, string, node-set, RTF or foreign)
+           optional = yes or no (default is no) 
+           default = an XPath expression giving the default value -->
+   <!-- <exslt:arg name="** argument-name **" type="** value-type **" 
+                   optional="** yes-or-no **" default="** expression **"> -->
+      <!-- <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns=""> -->
+         <!-- ** if you want to add documentation for the argument, uncomment this exslt:doc element and enter any documentation about the argument in DocBook or XHTML as above **-->
+      <!-- </exslt:doc> -->
+   <!-- </exslt:arg> -->
+</exslt:definition>
+
+<exslt:implementations>
+   <!-- enter any implementations; see
+        http://www.exslt.org/submissions/implementation-template.xml for details-->
+  <!-- enter any vendor implementations with exslt:vendor-implementation elements with the following attributes:
+          vendor = vendor name = system-property('xsl:vendor')
+          vendor-url = vendor URL = system-property('xsl:vendor-url')
+          vendor-version = version of XSLT processor that supports the element 
+          -->
+  <!-- <exslt:vendor-implementation version="1"
+          vendor="** vendor-name **"
+          vendor-url="** vendor-url **"
+          vendor-version="** processor-version **" /> -->
+</exslt:implementations>
+
+<exslt:use-cases>
+   <!-- enter any use cases; see
+        http://www.exslt.org/submissions/use-case-template.xml for details -->
+</exslt:use-cases>
+
+</exslt:function>

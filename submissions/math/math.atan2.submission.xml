@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>math</module>
+   <name>atan2</name>
+   <meta>
+      <author email="cutlass@secure0.com" url="http://www.on-idle.com">James Fuller</author>
+      <summary>Returns the atan2 value of the passed arguements.</summary>
+   </meta>
+   <definition>
+        <return type="number"/>
+	<arg name="value1" type="number" default="0" />
+	<arg name="value2" type="number" default="0" />
+   </definition>
+</function>

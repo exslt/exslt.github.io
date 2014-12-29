@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - func:function - Version 3</title><link rel="stylesheet" href="/style/base.css"/></head><body><h1 id="#title"><a href="/">EXSLT</a> - <a href="/func">func</a>:<a href="/func/function">function</a> - <a href="/func/function/func.function.3.html">Version 3</a></h1><table><tr><td id="menu"><p class="level1"><a href="/howto.html">How To</a></p><p class="level1"><a href="/download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="/exsl/">Common</a></p><p class="level2"><a href="/math/">Math</a></p><p class="level2"><a href="/set/">Sets</a></p><p class="level2"><a href="/func/">Functions</a></p><p class="level3"><a href="/func/function/">func:function</a> (<a href="/func/function/func.function.html">Developer</a>)</p><p class="level3"><a href="/func/result/">func:result</a> (<a href="/func/result/func.result.html">Developer</a>)</p><p class="level1"><a href="/submissions/">Submissions</a></p><p class="level1"><a href="/list">Mailing List</a></p><p class="level1"><a href="/contact.html">Contact</a></p></td><td id="content"><p><b>Version: </b>3<br/><b>Previous Version: </b><a href="func.function.2.html">func.function.2.html</a><br/><b>Status: </b>revised<br/><b>Element Package: </b><a href="func.function.zip">func.function.zip</a></p><h4>Element Syntax</h4><pre>&lt;func:function
+   <b>name</b> = <var>QName</var>&gt;
+   &lt;-- Content: (<a href="http://www.w3.org/TR/xslt#element-param">xsl:param</a>* | <var>template</var>) --&gt;
+&lt;/func:function&gt;</pre><html:div xmlns:exslt="http://exslt.org/documentation"><p>
+         The <code>func:function</code> element can only occur at the top level of the stylesheet.  The <code>func:function</code> element declares an extension function that is visible everywhere: the extension function is added to the function library available to the expressions and patterns used in the XSLT stylesheet.
+      </p><p>
+         An <code>func:function</code> element must have a <code>name</code> attribute, indicating the name of the function.  The value of the <code>name</code> attribute is a <a class="offsite" href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a>, which is expanded as described in [<a class="offsite" href="http://www.w3.org/TR/xslt#qname">2.4 Qualified Names</a>] in [<a href="http://www.w3.org/TR/xslt">XSLT</a>].  It is an error if the namespace URI of the expanded name of the function is null - extension functions must not be in a null namespace.
+      </p><p class="note">
+         Note: the rules on resolving qualified names entail that if no prefix is defined, the namespace URI resolves to the null namespace.  Thus, it is an error if the qualified name specified does not have a prefix.
+      </p><p>
+         It is an error if a stylesheet contains more than one <code>func:function</code> element with the same name and the same import precedence.  An XSLT processor may signal the error; if it does not signal the error, it must recover by using the function definition that occurs last in the stylesheet.
+      </p><p>
+         When an extension function defined with <code>func:function</code> is called, the content of the <code>func:function</code> is instantiated to give the result of the function (see [<a href="../result"><code>func:result</code></a>]).
+      </p><h3>Defining Function Arguments</h3><p>
+         Arguments for functions are defined with the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> element, as specified in [<a class="offsite" href="http://www.w3.org/TR/xslt#variables">11. Variables and Parameters</a>] of [<a href="http://www.w3.org/TR/xslt">XSLT</a>].
+      </p><p>
+         When an extension function is called, the values passed as arguments are assigned to parameters according to the position of the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>.  The first argument is assigned to the first parameter, the second to the second and so on.  The presence of an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates that an argument is expected for the function but does not imply that an argument <em>has</em> to be passed to the function.
+      </p><p>
+         An XSLT processor must not signal an error if an extension function is called with fewer arguments than there are parameters defined for the extension function.  It is an error to call a function with more arguments than there are parameters defined for the extension function.  An XSLT processor may signal the error; if it does not signal the error, then it must recover by ignoring the extra arguments.
+      </p><p>
+         As an example, take the following function definition:
+      </p><pre>
+&lt;func:function name="my:func"&gt;
+   &lt;xsl:param name="foo" /&gt;
+   &lt;xsl:param name="bar" select="false()" /&gt;
+   ...
+&lt;/func:function&gt;</pre><p>
+         All the following function calls are legal:
+      </p><pre>
+my:func()
+my:func('Fred')
+my:func('Fred', true())
+my:func('Fred', 'Barney')</pre><p>
+         The following function call is illegal:
+      </p><pre class="error">my:func('Fred', true(), 'Barney')</pre><p>
+         The value specified by an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates the default value for an argument if that argument is not given in a function call, but does not indicate the acceptable value types for the function.
+      </p><p class="note">
+         The type of the value passed into the function may be tested with the <a href="/exsl/object-type">exsl:object-type</a> function if it is supported.
+      </p><h3>Function Results</h3><p>
+         The content of the <code>func:function</code> element is a template.  When the function is called, the template is instantiated to give the result of the function.  The template is instantiated with the context node from the expression in which the function was called as the current node, and with the context node list from the expression in which the function was called as the current node list. 
+      </p><p>
+         It is an error if the instantiation of the template results in the generation of result nodes. For example a call to <code>my:func</code> as below is an error.
+      </p><pre class="error">
+&lt;func:function name="my:func"&gt;
+   &lt;foo /&gt;
+&lt;/func:function&gt;</pre><p>
+         The instantiation of the content of the <code>func:function</code> element may involve the instantiation of an <a href="../result"><code>func:result</code></a> element to enable functions to return node sets (and booleans).
+      </p><p>
+         If no <a href="../result"><code>func:result</code></a> element is instantiated, then the result of the function is an empty string.
+      </p></html:div><p>
+      An implementation of this extension 
+      element
+      in the EXSLT func namespace must conform to the behaviour described in this document.
+   </p><h2>Change History</h2><p><b>Submitted: </b>2001-03-31<br/><b>Creator: </b>Jeni Tennison(<a href="http://www.jenitennison.com">http://www.jenitennison.com</a>)</p><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">Stopped functions from being able to return result tree fragments just be creating nodes within the content as it increased complexity fairly significantly for not a lot of benefit. Function results now have to be set by <a xmlns="" href="../result"><code>func:result</code></a>.</dc:description></p><h2>Copyright</h2><p class="copyright">This material is in the public domain.</p></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/func.function.3.html">http://www.exslt.org/func.function.3.html</a> last modified 2001-03-31</p></div></body></html>

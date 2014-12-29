@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE element SYSTEM 'element-submission.dtd'>
+<!-- ** indicate where entries should be made ** -->
+<!-- comments indicate optional entries -->
+<element date="**date of submission**">
+
+   <module>**prefix for module**</module>
+   <name>**element name**</name>
+
+   <meta>
+      <author email="**email address**" 
+              url="**url**">
+         **author name**
+      </author>
+      <!--
+      <rights>
+         **copyright information**
+      </rights>
+      -->
+      <!--
+      <changes>
+         **changes since last version**
+      </changes>
+      -->
+      <!--
+      <keywords>
+         **comma-separated list of keywords**
+      </keywords>
+      -->
+      <summary>
+         <!-- if you want to use DocBook, add written-in="docbook" to summary element -->
+         **summary of element in HTML**
+      </summary>
+   </meta>
+   <documentation>
+      <!-- if you want to use DocBook, add written-in="docbook" to documentation element -->
+      **description of element in HTML**
+   </documentation>
+   <definition>
+      <!-- use XML Schema to define element - the content here should be the same as the content of a complexType element in XML Schema -->
+   </definition>
+
+</element>

@@ -1,0 +1,52 @@
+<!ELEMENT package (module, ((common-meta, function+) |
+                            (function-name, version, common-meta, 
+                             (implementation | use-case)+) | 
+                            (element-name, version, common-meta, 
+                             (implementation | use-case)+))>
+<!ATTLIST package
+   date  CDATA #REQUIRED>
+
+<!ELEMENT module (#PCDATA)>
+<!ELEMENT function-name (#PCDATA)>
+<!ELEMENT element-name (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT function (name, meta?, documentation, definition)>
+<!ATTLIST function
+   version  CDATA '1'
+   status  (new|revised|implemented|stable) #IMPLIED>
+
+<!ELEMENT implementation (src, language, meta?, documentation?)>
+<!ATTLIST implementation
+   version  CDATA '1'
+
+<!ELEMENT src (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
+
+<!ELEMENT use-case (data?, xslt, result?, meta?, documentation?)>
+<!ATTLIST use-case
+   type  (example|error|boundary)   'example'>
+
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT xslt (#PCDATA)>
+<!ELEMENT result (#PCDATA)>
+
+<!ELEMENT common-meta (author?, rights?, changes?, keywords?, summary?)>
+<!ELEMENT meta (author?, rights?, changes?, keywords?, summary?)>
+
+<!ELEMENT author (#PCDATA)>
+<!ATTLIST author
+   email CDATA #IMPLIED
+   url   CDATA #IMPLIED>
+
+<!ELEMENT rights ANY>
+
+<!ELEMENT changes ANY>
+<!ATTLIST changes
+   written-in (docbook|html) 'html'>
+
+<!ELEMENT keywords (#PCDATA)>
+   
+<!ELEMENT summary ANY>
+<!ATTLIST summary
+   written-in (docbook|html) 'html'>

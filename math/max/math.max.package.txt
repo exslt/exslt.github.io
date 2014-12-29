@@ -1,0 +1,6 @@
+../../howto.html
+../index.html
+math.max.html
+math.max.xsl
+math.max.function.xsl
+math.max.template.xsl

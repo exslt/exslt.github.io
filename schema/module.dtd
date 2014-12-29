@@ -1,0 +1,35 @@
+<!ENTITY % common 'exslt.dtd'>
+%common;
+<!-- module element is top-level element for module descriptions.
+     meta      - the meta information for the module description as a whole
+     doc       - documentation for the module; each should have a different 
+                 value for xml:lang
+     functions - the functions within the module -->     
+<!ELEMENT exslt:module (exslt:name, rdf:Description, exslt:doc+, exslt:functions)>
+<!-- the version attribute holds an integer identifying the version 
+     of the module -->
+<!-- ISSUE: should module element have an attribute to indicate 
+     name, given meta/dc:title holds that value? -->
+<!ATTLIST exslt:module
+   xmlns:exslt CDATA    'http://www.exslt.org/documentation'
+   version     CDATA    #REQUIRED>
+
+<!-- the functions element holds a list of the functions available in the 
+     module.  Usually there will be one or more functions. -->
+<!ELEMENT exslt:functions (exslt:function*)>
+
+<!-- the function element holds information about a single function in the 
+     module -->
+<!ELEMENT exslt:function EMPTY>
+<!-- the src attribute gives the URL of the code for the  
+     implementation -->
+<!-- the language attribute gives the name of the language the 
+     implementation is written in.  This should be a qualified name, 
+     one of those available for xsl:script -->
+<!-- the version attribute gives the version of the function that is 
+     supported by the implementation -->
+<!-- the algorithm attribute gives a description of the algorithm 
+     used in the implementation, if appropriate -->
+<!ATTLIST exslt:function
+   href     CDATA #REQUIRED
+   version  CDATA #REQUIRED>

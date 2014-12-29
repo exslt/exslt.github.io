@@ -1,0 +1,21 @@
+<!ENTITY % exslt SYSTEM 'exslt-submission.dtd'>
+%exslt;
+
+<!ELEMENT implementation (module, function, version, language, src, meta?, documentation?)>
+<!ATTLIST implementation
+   version  CDATA '1'
+   date     CDATA #REQUIRED>
+                    
+<!ELEMENT module (#PCDATA)>
+
+<!ELEMENT function (#PCDATA)>
+
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT language (#PCDATA)>
+
+<!ELEMENT src (#PCDATA)>
+
+<!ELEMENT documentation ANY>
+<!ATTLIST documentation
+   written-in (docbook|html) 'html'>

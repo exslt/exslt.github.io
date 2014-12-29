@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>datetime</module>
+   <name>sum</name>
+   <meta>
+      <author email="chris@bayes.co.uk" url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>NEEDS TO BE DEFINED</summary>
+   </meta>
+   <definition>
+        <return type="number"/>
+	<arg name="value" type="nodeset" default="" />
+   </definition>
+</function>

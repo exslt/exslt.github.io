@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - str:tokenize - EXSLT Function Implementation</title><link rel="stylesheet" href="base.css"/></head><body><h1 id="#title"><a href="http://www.exslt.org/">EXSLT</a> - <a href="http://www.exslt.org/str">str</a>:<a href="http://www.exslt.org/str/functions/tokenize">tokenize</a> - <a href="http://www.exslt.org/str/functions/tokenize/str.tokenize.function.xsl.html">EXSLT Function Implementation</a></h1><table><tr><td id="menu"><p class="level1"><a href="index.html">User Page</a></p><p class="level1"><a href="../../../howto.html">How To</a></p><p class="level1"><a href="../../../download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="../../../date/date.html">Dates and Times</a></p><p class="level2"><a href="../../../dyn/dyn.html">Dynamic</a></p><p class="level2"><a href="../../../exsl/exsl.html">Common</a></p><p class="level2"><a href="../../../func/func.html">Functions</a></p><p class="level2"><a href="../../../math/math.html">Math</a></p><p class="level2"><a href="../../../random/random.html">Random</a></p><p class="level2"><a href="../../../regexp/regexp.html">Regular Expressions</a></p><p class="level2"><a href="../../../set/set.html">Sets</a></p><p class="level2"><a href="../../../str/str.html">Strings</a></p><p class="level3"><a href="../../functions/align/str.align.html">str:align()</a></p><p class="level3"><a href="../../functions/concat/str.concat.html">str:concat()</a></p><p class="level3"><a href="../../functions/decode-uri/str.decode-uri.html">str:decode-uri()</a></p><p class="level3"><a href="../../functions/encode-uri/str.encode-uri.html">str:encode-uri()</a></p><p class="level3"><a href="../../functions/padding/str.padding.html">str:padding()</a></p><p class="level3"><a href="../../functions/replace/str.replace.html">str:replace()</a></p><p class="level3"><a href="../../functions/split/str.split.html">str:split()</a></p><p class="level3"><a href="../../functions/tokenize/str.tokenize.html">str:tokenize()</a></p><p class="level4"><a href="../../functions/tokenize/str.tokenize.function.xsl.html">EXSLT Function</a></p><p class="level4"><a href="../../functions/tokenize/str.tokenize.template.xsl.html">XSLT Template</a></p><p class="level4"><a href="../../functions/tokenize/str.tokenize.js.html">Javascript</a></p><p class="level4"><a href="../../functions/tokenize/str.tokenize.msxsl.xsl.html">Msxsl</a></p><p class="level1"><a href="../../../submissions/">Submissions</a></p><p class="level1"><a href="../../../list">Mailing List</a></p><p class="level1"><a href="../../../contact.html">Contact</a></p></td><td id="content"><p><b>Supported Version: </b>1<br/><b>XML Definition: </b><a href="str.tokenize.xml">str.tokenize.xml</a><br/><b>Source: </b><a href="str.tokenize.function.xsl">str.tokenize.function.xsl</a></p><div>
+               This implementation relies on the <a href="http://www.exslt.org/exsl/functions/node-set"><code>exsl:node-set()</code></a> function.
+            </div><h2>Source</h2><pre>&lt;func:function name="str:tokenize"&gt;
+   &lt;xsl:param name="string"
+              select="''" /&gt;
+   &lt;xsl:param name="delimiters"
+              select="' <to xmlns=""><span class="entity">&amp;#x9;</span></to>
+'" /&gt;
+   &lt;xsl:choose&gt;
+      &lt;xsl:when test="not($string)"&gt;
+         &lt;func:result select="/.." /&gt;
+      &lt;/xsl:when&gt;
+      &lt;xsl:when test="not(function-available('exsl:node-set'))"&gt;
+         &lt;xsl:message terminate="yes"&gt;
+        ERROR: EXSLT - Functions implementation of str:tokenize relies on exsl:node-set().
+      &lt;/xsl:message&gt;
+      &lt;/xsl:when&gt;
+      &lt;xsl:otherwise&gt;
+         &lt;xsl:variable name="tokens"&gt;
+            &lt;xsl:choose&gt;
+               &lt;xsl:when test="not($delimiters)"&gt;
+                  &lt;xsl:call-template name="str:_tokenize-characters"&gt;
+                     &lt;xsl:with-param name="string"
+                                     select="$string" /&gt;
+                  &lt;/xsl:call-template&gt;
+               &lt;/xsl:when&gt;
+               &lt;xsl:otherwise&gt;
+                  &lt;xsl:call-template name="str:_tokenize-delimiters"&gt;
+                     &lt;xsl:with-param name="string"
+                                     select="$string" /&gt;
+                     &lt;xsl:with-param name="delimiters"
+                                     select="$delimiters" /&gt;
+                  &lt;/xsl:call-template&gt;
+               &lt;/xsl:otherwise&gt;
+            &lt;/xsl:choose&gt;
+         &lt;/xsl:variable&gt;
+         &lt;func:result select="exsl:node-set($tokens)/token" /&gt;
+      &lt;/xsl:otherwise&gt;
+   &lt;/xsl:choose&gt;
+&lt;/func:function&gt;
+&lt;xsl:template name="str:_tokenize-characters"&gt;
+   &lt;xsl:param name="string" /&gt;
+   &lt;xsl:if test="$string"&gt;
+      &lt;token&gt;
+         &lt;xsl:value-of select="substring($string, 1, 1)" /&gt;
+      &lt;/token&gt;
+      &lt;xsl:call-template name="str:_tokenize-characters"&gt;
+         &lt;xsl:with-param name="string"
+                         select="substring($string, 2)" /&gt;
+      &lt;/xsl:call-template&gt;
+   &lt;/xsl:if&gt;
+&lt;/xsl:template&gt;
+&lt;xsl:template name="str:_tokenize-delimiters"&gt;
+   &lt;xsl:param name="string" /&gt;
+   &lt;xsl:param name="delimiters" /&gt;
+   &lt;xsl:variable name="delimiter"
+                 select="substring($delimiters, 1, 1)" /&gt;
+   &lt;xsl:choose&gt;
+      &lt;xsl:when test="not($delimiter)"&gt;
+         &lt;token&gt;
+            &lt;xsl:value-of select="$string" /&gt;
+         &lt;/token&gt;
+      &lt;/xsl:when&gt;
+      &lt;xsl:when test="contains($string, $delimiter)"&gt;
+         &lt;xsl:if test="not(starts-with($string, $delimiter))"&gt;
+            &lt;xsl:call-template name="str:_tokenize-delimiters"&gt;
+               &lt;xsl:with-param name="string"
+                               select="substring-before($string, $delimiter)" /&gt;
+               &lt;xsl:with-param name="delimiters"
+                               select="substring($delimiters, 2)" /&gt;
+            &lt;/xsl:call-template&gt;
+         &lt;/xsl:if&gt;
+         &lt;xsl:call-template name="str:_tokenize-delimiters"&gt;
+            &lt;xsl:with-param name="string"
+                            select="substring-after($string, $delimiter)" /&gt;
+            &lt;xsl:with-param name="delimiters"
+                            select="$delimiters" /&gt;
+         &lt;/xsl:call-template&gt;
+      &lt;/xsl:when&gt;
+      &lt;xsl:otherwise&gt;
+         &lt;xsl:call-template name="str:_tokenize-delimiters"&gt;
+            &lt;xsl:with-param name="string"
+                            select="$string" /&gt;
+            &lt;xsl:with-param name="delimiters"
+                            select="substring($delimiters, 2)" /&gt;
+         &lt;/xsl:call-template&gt;
+      &lt;/xsl:otherwise&gt;
+   &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;</pre><h2>Change History</h2><p><b>Submitted: </b>2001-06-03<br/><b>Creator: </b><a href="mailto:mail@jenitennison.com">Jeni Tennison</a>(<a href="http://www.jenitennison.com/">http://www.jenitennison.com/</a>)</p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:exslt="http://exslt.org/documentation" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vcf="http://www.ietf.org/internet-drafts/draft-dawson-vcard-xml-dtd-03.txt"><html:div>
+         The <html:code>str:tokenize</html:code> function splits a string at the occurrences of given characters.
+      </html:div></dc:description><table><tr><th class="rowhead">Version</th><th>Modified</th><th>By</th><th>Details</th></tr><tr><td class="rowhead">1.1</td><td style="width: 5em;">2001-06-21</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:exslt="http://exslt.org/documentation" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vcf="http://www.ietf.org/internet-drafts/draft-dawson-vcard-xml-dtd-03.txt"><html:div>
+                  Added Javascript and MSXML implementations.
+               </html:div></dc:description></td></tr><tr><td class="rowhead">1.2</td><td style="width: 5em;">2001-11-18</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:exslt="http://exslt.org/documentation" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vcf="http://www.ietf.org/internet-drafts/draft-dawson-vcard-xml-dtd-03.txt"><html:div>
+                  Indicated behaviour when second argument is an empty string; str:tokenize() should return a list of tokens, each containing a single character.
+               </html:div></dc:description></td></tr><tr><td class="rowhead">1.3</td><td style="width: 5em;">2002-08-21</td><td><a href="mailto:craig.stewart@nottingham.ac.uk">Craig Stewart</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation" xmlns:vcf="http://www.ietf.org/internet-drafts/draft-dawson-vcard-xml-dtd-03.txt">Added 4XSLT and libxslt implementation to the list.</dc:description></p></td></tr><tr><td class="rowhead">1.4</td><td style="width: 5em;">2002-11-12</td><td><a href="mailto:craig.stewart@nottingham.ac.uk">Craig Stewart</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation" xmlns:vcf="http://www.ietf.org/internet-drafts/draft-dawson-vcard-xml-dtd-03.txt">Updated 4XSLT version to 0.12.0a3.</dc:description></p></td></tr></table></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/str/functions/tokenize/str.tokenize.function.xsl.html">http://www.exslt.org/str/functions/tokenize/str.tokenize.function.xsl.html</a> last modified 2002-11-12</p></div></body></html>

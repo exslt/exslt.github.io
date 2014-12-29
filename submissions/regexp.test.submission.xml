@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<function date="2001-06-24">
+
+   <module>regexp</module>
+   <name>test</name>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>
+         <p>Tests whether a string matches a regular expression.</p>
+      </summary>
+   </meta>
+   <documentation>
+      <p>
+         The <code>regexp:test</code> function returns true if the string given as the first argument matches the regular expression given as the second argument.
+      </p>
+      <p>
+         The second argument is a regular expression that follows the Javascript regular expression syntax.
+      </p>
+      <p>
+         The third argument is a string consisting of flags to be used by the test.  If a character is present then that flag is true.  The flags are:
+      </p>
+      <ul>
+         <li><code>g</code>: global test - has no effect on this function, but is retained for consistency with <code>regexp:match</code> and <code>regexp:replace</code>.</li>
+         <li><code>i</code>: case insensitive - the regular expression is treated as case insensitive.  If this character is not present, then the regular expression is case sensitive.</li>
+      </ul>
+   </documentation>
+   <definition>
+      <return type="boolean" />
+		<arg name="string" type="string" default="''" optional="no" />
+		<arg name="regExp" type="string" default="''" optional="no" />
+		<arg name="flags" type="string" default="''" optional="yes" />
+   </definition>
+
+</function>

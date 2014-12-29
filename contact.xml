@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+   <p>
+      If you want to talk about the definitions of any of the extensions described on this site, or about EXSLT as an initiative, then please join the <a href="list">mailing list</a> and send your messages to <a href="mailto:list@exslt.org">list@exslt.org</a>.
+   </p>
+   <p>
+      If you want to suggest new extensions or submit new implementations or use cases, then please follow the <a href="submissions">submission instructions</a>.
+   </p>
+   <p>
+      If you have any general comments or questions about the site or want to help out with the administrative burden, then please send your message to <a href="mailto:managers@exslt.org">managers@exslt.org</a>.
+   </p>
+   <h2>Managers</h2>
+   <p>
+      The current gang managing the site are:
+   </p>
+   <ul>
+	<li>Craig Stewart</li>
+      <li>Chris Bayes</li>
+      <li>Jim Fuller</li>
+      <li>Uche Ogbuji</li>
+      <li>Dave Pawson</li>
+      <li>Jeni Tennison</li>
+   </ul>
+</div>

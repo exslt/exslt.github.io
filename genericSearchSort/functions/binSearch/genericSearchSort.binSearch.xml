@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!-- <?xml-stylesheet type="text/xsl" href="../../style/function.xsl" ?> -->
+<!-- enter module prefix in module attribute -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="genericSearchSort" status="new">
+
+<exslt:name>binSearch</exslt:name>
+
+<!-- enter qualified name for function in ID attribute -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="genericSearchSort:binSearch">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>genericSearchSort</dc:subject>
+   <dc:subject>binSearch</dc:subject>
+   <!-- enter any other keywords in dc:subject elements -->
+   <dc:rights> 
+      'public domain'
+   </dc:rights>
+   <exslt:revision>
+      <!-- enter qualified name '.' version in ID attribute -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="genericSearchSort:binSearch.1">
+         <exslt:version>1</exslt:version>
+         <!-- enter email address in email attribute (optional) -->
+         <!-- enter URL in url attribute (optional) -->
+         <!-- add no-spam="no" if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="dnovatchev@yahoo.com"
+                     url="http://www.vbxml.com/">
+            Dimitre Novatchev
+         </dc:creator>
+         <dc:date>2001-05-18</dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <p>This is a generic binSearch() function that is passed a "template-pointer"
+            <br />to a template that implements a "comparison" between two nodes.
+            <br />This function takes as arguments a node to be looked up for,
+            <br />a nodeset of "sorted" nodes (the lookup table),
+            <br />the starting and ending positions from/to which to search,
+            <br />and a "template-pointer" to a template that implements a "comparison"
+            <br />between two nodes.
+            <br />The lookup-table nodeset must be sorted using exactly the same "comparison"
+            <br />as implemented by the template identified by the "template-pointer" argument.</p>
+
+            <p>The binSearch() function looks in the provided lookup nodeset to find a node,
+            <br /> which is "equal" to the node provided as the searh argument.
+            <br /> In case an equal node is found in the lookup node-set, then the binSearch()
+            <br /> function returns its position in the lookup table.
+            <br /> Otherwise it returns the value of '-1'.
+            </p>
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the element in DocBook or XHTML Strict -->
+   <!-- <section> -->
+      <!-- enter DocBook documentation for the element -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- enter XHTML documentation for the element; use h3-h6 elements for 
+           headings -->
+            <p>This is a generic binSearch() function that is passed a "template-pointer"
+            <br />to a template that implements a "comparison" between two nodes.
+            <br />This function takes as arguments a node to be looked up for,
+            <br />a nodeset of "sorted" nodes (the lookup table),
+            <br />the starting and ending positions from/to which to search,
+            <br />and a "template-pointer" to a template that implements a "comparison"
+            <br />between two nodes.
+            <br />The lookup-table nodeset must be sorted using exactly the same "comparison"
+            <br />as implemented by the template identified by the "template-pointer" argument.</p>
+
+            <p>The binSearch() function looks in the provided lookup nodeset to find a node,
+            <br /> which is "equal" to the node provided as the searh argument.
+            <br /> In case an equal node is found in the lookup node-set, then the binSearch()
+            <br /> function returns its position in the lookup table.
+            <br /> Otherwise it returns the value of '-1'.
+            </p>
+
+       </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <!-- enter function return type in type attribute; one of:
+           boolean, number, string, node-set, RTF, foreign -->
+   <exslt:return type="number">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the return value in DocBook or 
+              XHTML as above -->
+         <p>The return value of the binSearch() function is the position of a node of the
+         lookup node-set, which is "equal" to the search node,
+         or '-1' if no node from the lookup node-set is "equal" to the search node.</p>
+      </exslt:doc>
+   </exslt:return>
+   <!-- enter any arguments;
+           name = argument name
+           type = value type (boolean, number, string, node-set, RTF or foreign)
+           optional = yes or no (default is no) 
+           default = an XPath expression giving the default value -->
+   <exslt:arg name="argNode" type="node-set"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>A node-set having exactly one node. This is the node, for which
+              <br />an "equal" node from the lookup node-set must be found.</p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="nodeSet" type="node-set"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>This is the "lookup" node-set. The function determines if
+              <br />there is a node from this node-set, which is "equal" to the
+              <br />node supplied in the argNode argument.</p>
+
+              <p>
+              <br />The lookup-table nodeset must be sorted using exactly the
+              <br />same "comparison" as implemented by the template identified
+              <br />by the "template-pointer" (compTemplateSelect) argument.</p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="First" type="number"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>The position of the first node in the lookup node-set,
+              <br />from which the search is to start.
+              </p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="Last" type="number"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>The position of the first node in the lookup node-set,
+              <br />at which the search is to end.
+              </p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="compTemplateSelect" type="node-set"
+                   default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>This argument specifies a node with a unique namespace-uri to be
+              <br />matched by a caller-provided template that implements a
+              <br />"comparison" function.
+              <br />This user-provided template must have the following parameters:
+              
+              <ul>
+                <li>node1 -- the first node to be compared</li>
+                <li>node1 -- the second node to be compared</li>
+              </ul>
+              </p>
+              <p>The result that this user-provided template outputs is
+              a text string that must be one of the following:
+              <ul>
+                <li> 0 -- if the first node is "equal to" the second</li>
+                <li> 1 -- if the first node is "greater-than" the second</li>
+                <li>-1 -- if the first node is "less-than" the second</li>
+              </ul>
+             </p>
+      </exslt:doc>
+   </exslt:arg>
+</exslt:definition>
+
+<exslt:implementations>
+   <!-- enter any implementations; see
+        http://www.exslt.org/submissions/implementation-template.xml -->
+   <exslt:implementation src="genericSearchSort.binSearch.template.xsl" language="exslt:xslt"
+                         version="1" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <!-- enter any use cases; see
+        http://www.exslt.org/submissions/use-case-template.xml -->
+   <exslt:use-case type="example" data="genericSearchSort.binSearch.data.1.xml"
+                   xslt="genericSearchSort.binSearch.1.xsl"
+                   result="genericSearchSort.binSearch.result.1.xml" />
+</exslt:use-cases>
+
+</exslt:function>

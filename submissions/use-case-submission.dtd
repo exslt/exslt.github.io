@@ -1,0 +1,23 @@
+<!ENTITY % exslt SYSTEM 'exslt-submission.dtd'>
+%exslt;
+
+<!ELEMENT use-case (module, function, version, data?, xslt, result?, meta?, documentation?)>
+<!ATTLIST use-case
+   date     CDATA #REQUIRED
+   type  (example|error|boundary)   'example'>
+                    
+<!ELEMENT module (#PCDATA)>
+
+<!ELEMENT function (#PCDATA)>
+
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT data (#PCDATA)>
+
+<!ELEMENT xslt (#PCDATA)>
+
+<!ELEMENT result (#PCDATA)>
+
+<!ELEMENT documentation ANY>
+<!ATTLIST documentation
+   written-in (docbook|html) 'html'>

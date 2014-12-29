@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - exsl:node-set - Use Case 1</title><link rel="stylesheet" href="base.css"/></head><body><h1 id="#title">EXSLT - exsl:node-set - <a href="http://www.exslt.org/exsl/functions/node-set/exsl.node-set.use-case.1.html">Use Case 1</a></h1><table><tr><td id="menu"><p class="level1"><a href="index.html">User Page</a></p><p class="level1"><a href="../../../howto.html">How To</a></p><p class="level1"><a href="../../../download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="../../../date/date.html">Dates and Times</a></p><p class="level2"><a href="../../../dyn/dyn.html">Dynamic</a></p><p class="level2"><a href="../../../exsl/exsl.html">Common</a></p><p class="level3"><a href="../../functions/node-set/exsl.node-set.html">exsl:node-set()</a></p><p class="level4"><a href="../../functions/node-set/exsl.node-set.use-case.1.html">Use Case 1</a></p><p class="level4"><a href="../../functions/node-set/exsl.node-set.use-case.2.html">Use Case 2</a></p><p class="level3"><a href="../../functions/object-type/exsl.object-type.html">exsl:object-type()</a></p><p class="level3"><a href="../../elements/document/exsl.document.html">exsl:document</a></p><p class="level2"><a href="../../../func/func.html">Functions</a></p><p class="level2"><a href="../../../math/math.html">Math</a></p><p class="level2"><a href="../../../random/random.html">Random</a></p><p class="level2"><a href="../../../regexp/regexp.html">Regular Expressions</a></p><p class="level2"><a href="../../../set/set.html">Sets</a></p><p class="level2"><a href="../../../str/str.html">Strings</a></p><p class="level1"><a href="../../../submissions/">Submissions</a></p><p class="level1"><a href="../../../list">Mailing List</a></p><p class="level1"><a href="../../../contact.html">Contact</a></p></td><td id="content"><p><b>Category: </b>example<br/><b>XML Definition: </b><a href="exsl.node-set.xml">exsl.node-set.xml</a><br/><b>Function or Template: </b>function</p><p>
+            This use case shows the result of using exsl:node-set() to convert a result tree fragment to a node-set.
+         </p><h2>Use Case</h2><h3>Source <span style="font-size: 75%">(<a href="exsl.node-set.data.1.xml">view</a>)</span></h3><pre>&lt;doc&gt;
+   &lt;one /&gt;
+   &lt;two /&gt;
+   &lt;three /&gt;
+   &lt;four /&gt;
+&lt;/doc&gt;</pre><h3>Stylesheet <span style="font-size: 75%">(<a href="exsl.node-set.1.xsl">view</a>)</span></h3><pre>&lt;!--  Test exslt:node-set applied to a result tree fragment  --&gt;
+&lt;xsl:variable name="tree"&gt;
+   &lt;a&gt;
+      &lt;b&gt;
+         &lt;c&gt;
+            &lt;d /&gt;
+         &lt;/c&gt;
+      &lt;/b&gt;
+   &lt;/a&gt;
+&lt;/xsl:variable&gt;
+&lt;xsl:template match="/"&gt;
+   &lt;out&gt;
+      &lt;xsl:value-of select="count(exslt:node-set(//*))" /&gt;
+   &lt;/out&gt;
+&lt;/xsl:template&gt;</pre><h3>Result <span style="font-size: 75%">(<a href="exsl.node-set.result.1.xml">view</a>)</span></h3><pre>&lt;out xmlns:exslt="http://exslt.org/common"&gt;5&lt;/out&gt;</pre><h2>Change History</h2><p><b>Previous Version: </b><a href="..NaN.html">..NaN.html</a></p><table><tr><th class="rowhead">Version</th><th>Modified</th><th>By</th><th>Details</th></tr><tr><td class="rowhead">1</td><td style="width: 5em;">2001-04-28</td><td><a href="mailto:mhkay@iclway.co.uk">Mike Kay</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">Tests node-set to node-set conversion.</dc:description></p></td></tr></table></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/exsl/functions/node-set/exsl.node-set.use-case.1.html">http://www.exslt.org/exsl/functions/node-set/exsl.node-set.use-case.1.html</a> last modified 2001-04-28</p></div></body></html>

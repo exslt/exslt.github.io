@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<!-- ** indicate where entries should be made ** -->
+<!-- comments indicate optional entries -->
+<function date="**date of submission**">
+
+   <module>**prefix for module**</module>
+   <name>**function name**</name>
+
+   <meta>
+      <author email="**email address**" 
+              url="**url**">
+         **author name**
+      </author>
+      <!--
+      <rights>
+         **copyright information**
+      </rights>
+      -->
+      <!--
+      <changes>
+         **changes since last version**
+      </changes>
+      -->
+      <!--
+      <keywords>
+         **comma-separated list of keywords**
+      </keywords>
+      -->
+      <summary>
+         <!-- if you want to use DocBook, add written-in="docbook" to summary element -->
+         **summary of function in HTML**
+      </summary>
+   </meta>
+   <documentation>
+      <!-- if you want to use DocBook, add written-in="docbook" to documentation element -->
+      **description of function in HTML**
+   </documentation>
+   <definition>
+      <!-- add documentation in HTML inside return element if you want -->
+      <!-- if you want to use DocBook, add written-in="docbook" to return element -->
+      <return type="**return value type**" />
+      <!-- repeat arg elements as necessary -->
+      <!-- add documentation in HTML inside arg elements if you want -->
+      <!-- if you want to use DocBook, add written-in="docbook" to arg element -->
+      <!--
+      <arg name="**argument name**" 
+           type="**argument value type**" 
+           default="**default value for argument**"
+           optional="**yes or no (default no)**" />
+      -->
+   </definition>
+
+</function>

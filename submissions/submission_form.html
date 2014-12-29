@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml">
+<head>
+<title>EXSLT Submissions</title>
+<link rel="stylesheet" href="../style/base.css"/>
+
+<script language="JavaScript">
+  function setDoc1(){
+      var what=document.submission.exslt_function_doc_format.value;
+      if (what =='xhtml')
+      document.submission.exslt_function_doc.value = "<html:div xmlns='http://www.w3.org/1999/xhtml'>     </html:div>";
+      else
+      document.submission.exslt_function_doc.value = "<section>    </section>";
+  }
+
+  function setDoc2(){
+      var what=document.submission.exslt_implementation_doc_format.value;
+      if (what =='xhtml')
+      document.submission.exslt_implementation_doc1.value = "<html:div xmlns='http://www.w3.org/1999/xhtml'>     </html:div>";
+      else
+      document.submission.exslt_implementation_doc1.value = "<section>    </section>";
+  }
+
+  function setDoc3(){
+      var what=document.submission.exslt_usecase_doc_format.value;
+      if (what =='xhtml')
+      document.submission.exslt_usecase_doc1.value = "<html:div xmlns='http://www.w3.org/1999/xhtml'>     </html:div>";
+      else
+      document.submission.exslt_usecase_doc1.value = "<section>    </section>";
+  }
+
+     function addarg(){
+      var argvalue=document.submission.exslt_function_arg.value;
+      document.submission.exslt_function_arg.value = ""+argvalue+"<exslt:arg name='arguement name' type='boolean, number, string, node-set, RTF or foreign ' default='XPATH expression giving the default value' optional='yes or no default is no'/>";
+  }
+
+  function encodeall(){
+  document.submission.exslt_function_doc.value= escape(document.submission.exslt_function_doc.value);
+  document.submission.exslt_function_arg.value= escape(document.submission.exslt_function_arg.value);
+  document.submission.exslt_implementation_doc1.value= escape(document.submission.exslt_implementation_doc1.value);
+  document.submission.exslt_usecase_doc1.value= escape(document.submission.exslt_usecase_doc1.value);
+  return true;
+  }
+
+</script>
+
+
+</head>
+<body onLoad="setDoc1();setDoc2();">
+<h1>Function Submission Form: Function Definition</h1>
+<table>
+<tr>
+
+<td id="content">
+<div>
+<p>
+ The submission form will assist in generating well formed function definitions. There are
+ 2 steps for submitting each function implementation. The first is to fill out the below form which will autogenerate the xml definition file, the second
+ step will prompt you to upload the associated files ( please follow file naming conventions as described in submission form help area ). Good Luck and we will
+ strive to make things easier in the future
+</p>
+<p class="note">
+     - Your personal information will not be used for any commercial activities.<br/>
+     - To input multiple implementations or use cases you must fill out this form every time, we will improve upon this in the near future
+</p>
+<br>
+<form method="POST" action="http://195.40.167.142/cgi-bin/form2mailxml.pl" name="submission" onSubmit="encodeall()">
+<input type="hidden" name="email" value="admin@exlst.org">
+<input type="hidden" name="sort" value="order:creator_name,creator_email,creator_url,dc_description,dc_right_choose,dc_rights,exslt_name,exslt_module,exslt_version,exslt_status,exslt_function_doc_format,exslt_function_doc,exslt_return,exslt_function_arg,exslt_implementation_name1,exslt_implementation_version1,exslt_implementation_language1,exslt_implementation_doc_format,exslt__implementation_doc1,exslt_implementation_src1,exslt_implementation_vender_name1,exslt_implementation_vender_url1,exslt_implementation_vender_version1,exslt_usecase_name1,exslt_usecase_type,exslt_usecase_doc_format,exslt_usecase_doc1,exslt_usecase_stylesheet1,exslt_usecase_data1,exslt_usecase_result1">
+<h2>Submit Function Definition</h2>
+<br />
+Your Full Name<input name="creator_name" size="20"/>&nbsp;&nbsp;
+URL<input name="creator_url" size="20" value="http://"/> <br /><br />
+Email<input name="creator_email" size="20"/>&nbsp;&nbsp;
+Nospam<input type="checkbox" name="creator_nospam"/>&nbsp;&nbsp;  <br /><br />
+
+Brief Description of function
+<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="dc_description" rows="5" cols="50"></textarea>
+
+<br>
+<br>
+
+Comment on Copyright and Legal Rights or choose
+
+license:
+<select name="dc_right_choose" size="1">
+<option value="GPL">GPL</option>
+<option value="Public Domain">Public Domain</option>
+<option value="other">other</option>
+</select>
+
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="dc_rights" rows="5" cols="50"></textarea>
+
+
+<p>
+Please read the help on <a href="http://www.exslt.org/submissions/" target="new">submitting functions</a> for further information.
+</p>
+<br>
+function name
+<input name="exslt_name" size="10"/>
+&nbsp;&nbsp;
+module
+<select name="exslt_module">
+<option value="Common">Common</option>
+<option value="Math">Math</option>
+<option value="Sets">Sets</option>
+<option value="Functions">Functions</option>
+<option value="Functions">New Module</option>
+</select>
+&nbsp;&nbsp;
+version
+<input name="exslt_version" size="3" value="1.0"/>
+&nbsp;&nbsp;
+status
+<select name="exslt_status">
+<option value="new">new</option>
+</select>
+
+<br><br><br>
+
+Function Documentation please choose which format
+<select name="exslt_function_doc_format" onChange="setDoc1()">
+<option value="docbook">docbook format</option>
+<option value="xhtml">xhtml format</option>
+</select>
+<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="exslt_function_doc" rows="10" cols="50">
+
+</textarea>
+
+<br>
+<br>
+
+Function Return Value
+<select name="exslt_return">
+<option value="boolean">boolean</option>
+<option value="number">number</option>
+<option value="string">string</option>
+<option value="node-set">node-set</option>
+<option value="RTF">RTF</option>
+<option value="foreign">foreign</option>
+</select>
+<br>
+<br>
+
+Function Arguments <a href="#" onClick="javascript:addarg();return false;">add argument</a>
+<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="exslt_function_arg" rows="10" cols="50" value="">
+</textarea>
+<br><br>
+<h2>Submit Implementation</h2>
+<p>
+An implementation may be a function or template, with various differences allowed for programming language. Each implementation has a seperate file which has
+</p>
+
+<br>
+<table>
+<tr>
+<th style="text-align:left;" >implementation information
+</th>
+<th style="text-align:left;" >
+additional information
+</th>
+</tr>
+<tr>
+
+<td style="text-align:left;" >
+<br>
+name<input name="exslt_implementation_name1" type="text" size="15"/>&nbsp
+
+version<input name="exslt_implementation_version1" type="text" size="3" value="1.0"/>&nbsp
+language
+<select name="exslt_implementation_language1" size="1">
+<option value="EXSLT1.0">EXSLT 1.0</option>
+<option value="XSLT1.0">XSLT 1.0</option>
+<option value="XSLT1.1">XSLT 1.1</option>
+<option value="Javascript">Javascript</option>
+</select>
+<br>
+<br>
+
+Implementation Documentation please choose which format
+<select name="exslt_implementation_doc_format"  onChange="setDoc2()">
+<option value="docbook">docbook format</option>
+<option value="xhtml">xhtml format</option>
+</select>
+<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="exslt_implementation_doc1" rows="10" cols="50">
+
+</textarea>
+<br>
+<br>
+</td>
+<td style="text-align:left;" >
+<br>
+vendor
+<br>
+<input name="exslt_implementation_vender_name1" type="text" size="15"/><br>
+vendor-url
+<br>
+<input name="exslt_implementation_vender_url1" type="text" size="15"/><br>
+vendor-version
+<br><input name="exslt_implementation_vender_version1" type="text" size="3" value="1.0"/>
+
+</td>
+</tr>
+</table>
+
+<br><br>
+<h2>Submit Use Case</h2>
+<p>
+A use case is a complete example of how a function would be used.
+</p>
+
+<br>
+<table>
+<tr>
+<th style="text-align:left;" >use case information
+</th>
+
+</tr>
+<tr>
+
+<td style="text-align:left;" >
+<br>
+name<input name="exslt_usecase_name1" type="text" size="15"/>&nbsp
+type<select name="exslt_usecase_type">
+<option value="example">example</option>
+<option value="boundary">boundary</option>
+<option value="error">error</option>
+</select>
+<br>
+<br>
+
+Use Case Documentation please choose which format
+<select name="exslt_usecase_doc_format" onChange="setDoc3()">
+<option value="docbook">docbook format</option>
+<option value="xhtml">xhtml format</option>
+</select>
+<br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<textarea name="exslt_usecase_doc1" rows="10" cols="50">
+
+</textarea>
+<br>
+<br>
+
+</td>
+
+</tr>
+</table>
+
+<hr/>
+<input type="hidden" name="recipient" size="42" value="gaby@on-idle.com">
+<input type="submit" value="Upload Function definition"/>
+</form>
+</div>
+</td>
+</table>
+
+
+<div id="colophon">
+<p>
+<a href="http://www.exslt.org/submissions.html">http://www.exslt.org/submissions.html</a>
+</p>
+</div>
+</body>
+</html>

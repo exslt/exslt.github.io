@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - date:duration - XSLT Template Implementation</title><link rel="stylesheet" href="base.css"/></head><body><h1 id="#title"><a href="http://www.exslt.org/">EXSLT</a> - <a href="http://www.exslt.org/date">date</a>:<a href="http://www.exslt.org/date/functions/duration">duration</a> - <a href="http://www.exslt.org/date/functions/duration/date.duration.template.xsl.html">XSLT Template Implementation</a></h1><table><tr><td id="menu"><p class="level1"><a href="index.html">User Page</a></p><p class="level1"><a href="../../../howto.html">How To</a></p><p class="level1"><a href="../../../download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="../../../date/date.html">Dates and Times</a></p><p class="level3"><a href="../../functions/add/date.add.html">date:add()</a></p><p class="level3"><a href="../../functions/add-duration/date.add-duration.html">date:add-duration()</a></p><p class="level3"><a href="../../functions/date/date.date.html">date:date()</a></p><p class="level3"><a href="../../functions/date-time/date.date-time.html">date:date-time()</a></p><p class="level3"><a href="../../functions/day-abbreviation/date.day-abbreviation.html">date:day-abbreviation()</a></p><p class="level3"><a href="../../functions/day-in-month/date.day-in-month.html">date:day-in-month()</a></p><p class="level3"><a href="../../functions/day-in-week/date.day-in-week.html">date:day-in-week()</a></p><p class="level3"><a href="../../functions/day-in-year/date.day-in-year.html">date:day-in-year()</a></p><p class="level3"><a href="../../functions/day-name/date.day-name.html">date:day-name()</a></p><p class="level3"><a href="../../functions/day-of-week-in-month/date.day-of-week-in-month.html">date:day-of-week-in-month()</a></p><p class="level3"><a href="../../functions/difference/date.difference.html">date:difference()</a></p><p class="level3"><a href="../../functions/duration/date.duration.html">date:duration()</a></p><p class="level4"><a href="../../functions/duration/date.duration.function.xsl.html">EXSLT Function</a></p><p class="level4"><a href="../../functions/duration/date.duration.template.xsl.html">XSLT Template</a></p><p class="level4"><a href="../../functions/duration/date.js.html">Javascript</a></p><p class="level4"><a href="../../functions/duration/date.msxsl.xsl.html">Msxsl</a></p><p class="level3"><a href="../../functions/format-date/date.format-date.html">date:format-date()</a></p><p class="level3"><a href="../../functions/hour-in-day/date.hour-in-day.html">date:hour-in-day()</a></p><p class="level3"><a href="../../functions/leap-year/date.leap-year.html">date:leap-year()</a></p><p class="level3"><a href="../../functions/minute-in-hour/date.minute-in-hour.html">date:minute-in-hour()</a></p><p class="level3"><a href="../../functions/month-abbreviation/date.month-abbreviation.html">date:month-abbreviation()</a></p><p class="level3"><a href="../../functions/month-in-year/date.month-in-year.html">date:month-in-year()</a></p><p class="level3"><a href="../../functions/month-name/date.month-name.html">date:month-name()</a></p><p class="level3"><a href="../../functions/parse-date/date.parse-date.html">date:parse-date()</a></p><p class="level3"><a href="../../functions/second-in-minute/date.second-in-minute.html">date:second-in-minute()</a></p><p class="level3"><a href="../../functions/seconds/date.seconds.html">date:seconds()</a></p><p class="level3"><a href="../../functions/sum/date.sum.html">date:sum()</a></p><p class="level3"><a href="../../functions/time/date.time.html">date:time()</a></p><p class="level3"><a href="../../functions/week-in-month/date.week-in-month.html">date:week-in-month()</a></p><p class="level3"><a href="../../functions/week-in-year/date.week-in-year.html">date:week-in-year()</a></p><p class="level3"><a href="../../functions/year/date.year.html">date:year()</a></p><p class="level3"><a href="../../elements/date-format/date.date-format.html">date:date-format</a></p><p class="level2"><a href="../../../dyn/dyn.html">Dynamic</a></p><p class="level2"><a href="../../../exsl/exsl.html">Common</a></p><p class="level2"><a href="../../../func/func.html">Functions</a></p><p class="level2"><a href="../../../math/math.html">Math</a></p><p class="level2"><a href="../../../random/random.html">Random</a></p><p class="level2"><a href="../../../regexp/regexp.html">Regular Expressions</a></p><p class="level2"><a href="../../../set/set.html">Sets</a></p><p class="level2"><a href="../../../str/str.html">Strings</a></p><p class="level1"><a href="../../../submissions/">Submissions</a></p><p class="level1"><a href="../../../list">Mailing List</a></p><p class="level1"><a href="../../../contact.html">Contact</a></p></td><td id="content"><p><b>Supported Version: </b>1<br/><b>XML Definition: </b><a href="date.duration.xml">date.duration.xml</a><br/><b>Source: </b><a href="date.duration.template.xsl">date.duration.template.xsl</a></p><div><p>
+               This implementation relies on <a href="../date-time/date.seconds.html"><code>date:seconds()</code></a> being available in order to get the current date/time.  If it isn't, it gives a zero duration (for now).
+            </p></div><h2>Source</h2><pre>&lt;xsl:import href="../add/date.add.template.xsl" /&gt;
+&lt;xsl:template match="/"&gt;
+   &lt;xsl:message terminate="yes"&gt;
+      &lt;xsl:call-template name="date:add"&gt;
+         &lt;xsl:with-param name="date-time"
+                         select="'1900-01-01'" /&gt;
+         &lt;xsl:with-param name="duration"&gt;
+            &lt;xsl:call-template name="date:duration"&gt;
+               &lt;xsl:with-param name="seconds"
+                               select="(37257.041667 - 2) * 60 * 60 * 24" /&gt;
+            &lt;/xsl:call-template&gt;
+         &lt;/xsl:with-param&gt;
+      &lt;/xsl:call-template&gt;
+   &lt;/xsl:message&gt;
+&lt;/xsl:template&gt;
+&lt;xsl:template name="date:duration"&gt;
+   &lt;xsl:param name="seconds"&gt;
+      &lt;xsl:choose&gt;
+         &lt;xsl:when test="function-available('date:seconds')"&gt;
+            &lt;xsl:value-of select="date:seconds()" /&gt;
+         &lt;/xsl:when&gt;
+         &lt;xsl:otherwise&gt;0&lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+   &lt;/xsl:param&gt;
+   &lt;xsl:variable name="duration"&gt;
+      &lt;xsl:variable name="day-s"
+                    select="60 * 60 * 24" /&gt;
+      &lt;xsl:variable name="hour-s"
+                    select="60 * 60" /&gt;
+      &lt;xsl:variable name="min-s"
+                    select="60" /&gt;
+      &lt;xsl:if test="$seconds <to xmlns=""><span class="entity">&amp;lt;</span></to> 0"&gt;-&lt;/xsl:if&gt;
+      &lt;xsl:text&gt;P&lt;/xsl:text&gt;
+      &lt;xsl:variable name="s"
+                    select="$seconds * ((($seconds &gt;= 0) * 2) - 1)" /&gt;
+      &lt;xsl:variable name="days"
+                    select="floor($s div $day-s)" /&gt;
+      &lt;xsl:variable name="hours"
+                    select="floor(($s - ($days * $day-s)) div $hour-s)" /&gt;
+      &lt;xsl:variable name="mins"
+                    select="floor(($s - ($days * $day-s) - ($hours * $hour-s)) div $min-s)" /&gt;
+      &lt;xsl:variable name="secs"
+                    select="$s - ($days * $day-s) - ($hours * $hour-s) - ($mins * $min-s)" /&gt;
+      &lt;xsl:if test="$days"&gt;
+         &lt;xsl:value-of select="$days" /&gt;
+         &lt;xsl:text&gt;D&lt;/xsl:text&gt;
+      &lt;/xsl:if&gt;
+      &lt;xsl:if test="$hours or $mins or $secs"&gt;T&lt;/xsl:if&gt;
+      &lt;xsl:if test="$hours"&gt;
+         &lt;xsl:value-of select="$hours" /&gt;
+         &lt;xsl:text&gt;H&lt;/xsl:text&gt;
+      &lt;/xsl:if&gt;
+      &lt;xsl:if test="$mins"&gt;
+         &lt;xsl:value-of select="$mins" /&gt;
+         &lt;xsl:text&gt;M&lt;/xsl:text&gt;
+      &lt;/xsl:if&gt;
+      &lt;xsl:if test="$secs"&gt;
+         &lt;xsl:value-of select="$secs" /&gt;
+         &lt;xsl:text&gt;S&lt;/xsl:text&gt;
+      &lt;/xsl:if&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:value-of select="$duration" /&gt;
+&lt;/xsl:template&gt;</pre><h2>Change History</h2><p><b>Submitted: </b>2001-05-12<br/><b>Creator: </b><a href="mailto:mail@jenitennison.com">Jeni Tennison</a>(<a href="http://www.jenitennison.com/">http://www.jenitennison.com/</a>)</p><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">
+            Returns the result of converting the argument number of seconds to a duration string, or the current date/time as a duration since 1970-01-01T00:00:00Z.
+         </dc:description></p><table><tr><th class="rowhead">Version</th><th>Modified</th><th>By</th><th>Details</th></tr><tr><td class="rowhead">1.1</td><td style="width: 5em;">2001-06-11</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">
+            Added Javascript implementation.
+         </dc:description></p></td></tr><tr><td class="rowhead">1.2</td><td style="width: 5em;">2001-06-12</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">
+            Added implementations in XSLT and EXSLT - Functions.
+         </dc:description></p></td></tr><tr><td class="rowhead">1.3</td><td style="width: 5em;">2001-06-16</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation"><ul><li>Updated Javascript implementation.</li><li>Added Microsoft-specific stylesheet.</li></ul></dc:description></td></tr><tr><td class="rowhead">1.4</td><td style="width: 5em;">2002-08-21</td><td><a href="mailto:craig.stewart@nottingham.ac.uk">Craig Stewart</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">Added libxslt implementation to the list.</dc:description></p></td></tr></table></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/date/functions/duration/date.duration.template.xsl.html">http://www.exslt.org/date/functions/duration/date.duration.template.xsl.html</a> last modified 2002-08-21</p></div></body></html>

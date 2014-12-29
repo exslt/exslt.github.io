@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+   <p>
+   The following companies provide financial support for EXSLT. If you
+   would like to support this initiative, please <a href="mailto:managers@exslt.org">contact us</a>.
+   </p>
+   <br/>
+   <p>
+   <h4><a href="http://fourthought.com">Fourthought, Inc.</a></h4>
+   </p>
+   <p>
+   Fourthought, Inc. offers professional services to help clients use XML
+   technologies in software development.  Fourthought develops <a href="http://4Suite.org">4Suite</a>, an
+   open source platform and toolkit for XML and Web development.
+   </p>
+   <br/>
+   <p>
+   <h4><a href="http://www.jenitennison.com/consulting/">Jeni Tennison Consulting Ltd</a></h4>
+   </p>
+   <p>
+   Jeni Tennison Consulting offers independent XML consultancy,
+   including XSLT and XML Schema design and implementation, training
+   and mentoring.
+   </p>
+</div>

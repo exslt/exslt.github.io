@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../style/module.stylesheet.xsl" ?>
+<exslt:module xmlns:exslt="http://exslt.org/documentation"
+              version="1" prefix="genericMath">
+
+<exslt:name>Generic Math</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="genericMath">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>genericMath</dc:subject>
+   <dc:subject>generic</dc:subject>
+   <dc:subject>math</dc:subject>
+   <dc:subject>module</dc:subject>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="genericMath.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator>Jeni Tennison</dc:creator>
+         <dc:date>2001-05-24</dc:date>
+         <dc:description>A module of generic mathematical functions.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns="">
+   <section>
+      <para>
+         EXSLT - Generic Math covers extension elements and functions that provide facilities to do with maths using generic templates.
+      </para>
+   </section>
+</exslt:doc>
+
+<exslt:functions>
+   <exslt:function name="min" version="1" core="no" />
+   <exslt:function name="max" version="1" core="no" />
+</exslt:functions>
+
+</exslt:module>

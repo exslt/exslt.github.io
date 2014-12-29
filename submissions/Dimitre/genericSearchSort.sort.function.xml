@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!-- <?xml-stylesheet type="text/xsl" href="../../style/function.xsl" ?> -->
+<!-- enter module prefix in module attribute -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="genericSearchSort" status="new">
+
+<exslt:name>sort</exslt:name>
+
+<!-- enter qualified name for function in ID attribute -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="genericSearchSort:sort">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>genericSearchSort</dc:subject>
+   <dc:subject>sort</dc:subject>
+   <!-- enter any other keywords in dc:subject elements -->
+   <dc:rights> 
+      'public domain'
+   </dc:rights>
+   <exslt:revision>
+      <!-- enter qualified name '.' version in ID attribute -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="genericSearchSort:sort.1">
+         <exslt:version>1</exslt:version>
+         <!-- enter email address in email attribute (optional) -->
+         <!-- enter URL in url attribute (optional) -->
+         <!-- add no-spam="no" if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="dnovatchev@yahoo.com"
+                     url="http://www.vbxml.com/">
+            Dimitre Novatchev
+         </dc:creator>
+         <dc:date>2001-05-18</dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <p>This is a generic sort() function that is passed a "template-pointer"
+            <br />to a template that implements a "greater than" relation 
+            <br />between the values of any two nodes.
+            <br />This function takes as arguments a node-set to be sorted,
+            <br />a number specifying the number of the "maximum elements" to be returned,
+            <br />and a "template-pointer" to a template that implements a "greater than"
+            <br />relation between the values of any two nodes.
+            </p>
+
+            <p>The sort() function returns a string containing a sequence (concatenation)
+            <br />of the "k highest" nodes of the node-set specified in the first argument
+            <br />where "k" is the value specified by the second argument (partial sort).
+            <br />
+            <br />In case k is omitted or is equal to the total number of nodes in the node-set,
+            <br />then the sort() function performs a complete sort.
+            </p>
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the element in DocBook or XHTML Strict -->
+   <!-- <section> -->
+      <!-- enter DocBook documentation for the element -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- enter XHTML documentation for the element; use h3-h6 elements for 
+           headings -->
+            <p>This is a generic sort() function that is passed a "template-pointer"
+            <br />to a template that implements a "greater than" relation
+            <br />between the values of any two nodes.
+            <br />This function takes as arguments a node-set to be sorted,
+            <br />a number specifying the number of the "maximum elements" to be returned,
+            <br />and a "template-pointer" to a template that implements a "greater than"
+            <br />relation between the values of any two nodes.
+            </p>
+
+            <p>The sort() function returns a string containing a sequence (concatenation)
+            <br />of the "k highest" nodes of the node-set specified in the first argument
+            <br />where "k" is the value specified by the second argument (partial sort).
+            <br />
+            <br />In case k is omitted or is equal to the total number of nodes in the node-set,
+            <br />then the sort() function performs a complete sort.
+            </p>
+
+       </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <!-- enter function return type in type attribute; one of:
+           boolean, number, string, node-set, RTF, foreign -->
+   <exslt:return type="string">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the return value in DocBook or 
+              XHTML as above -->
+         <p>The return value of the sort() function is a string containing a sequence (concatenation)
+            <br />of the "k highest" nodes of the node-set specified in the first argument
+            <br />where "k" is the value specified by the second argument (partial sort).
+            <br />
+            <br />In case k is omitted or is equal to the total number of nodes in the node-set,
+            <br />then the sort() function performs a complete sort.
+         </p>
+      </exslt:doc>
+   </exslt:return>
+   <!-- enter any arguments;
+           name = argument name
+           type = value type (boolean, number, string, node-set, RTF or foreign)
+           optional = yes or no (default is no) 
+           default = an XPath expression giving the default value -->
+   <exslt:arg name="theNodes" type="node-set"
+                   optional="no" default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>The node-set containing the nodes to be sorted.</p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="kToSort" type="number"
+                   optional="no" default="0">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>The number (k) of the "highest" nodes of the node-set,
+              <br />the sequence of positions of which must be returned.
+              </p>
+      </exslt:doc>
+   </exslt:arg>
+
+   <exslt:arg name="comparisonSelector" type="node-set"
+                   default="/..">
+      <exslt:doc xmlns:html="http://www.w3.org/1999/xhtml" xmlns="">
+         <!-- enter any documentation about the argument in DocBook or
+              XHTML as above -->
+              <p>This argument specifies a node with a unique namespace-uri to be
+              <br />matched by a caller-provided template that implements a
+              <br />"comparison" function.
+              <br />This user-provided template must have the following parameters:
+              
+              <ul>
+                <li>node1 -- the first node to be compared</li>
+                <li>node2Pos -- the position in "theNodes" of the second node to be
+                compared to the first. This value may be 0, and in this case the user-provided
+                template must return 1 (This is necessary when the results string is initially
+                filled and there's still nothing to compare against -- 0-s initial positions).</li>
+              </ul>
+              </p>
+              <p>The result that this user-provided template outputs is
+              a text string that must be one of the following:
+              <ul>
+                <li> 0 -- if the first node is "equal to" the second</li>
+                <li> 1 -- if node2Pos = 0 or the first node is "greater-than" the second</li>
+                <li>-1 -- if the first node is "less-than" the second</li>
+              </ul>
+             </p>
+      </exslt:doc>
+   </exslt:arg>
+</exslt:definition>
+
+<exslt:implementations>
+   <!-- enter any implementations; see
+        http://www.exslt.org/submissions/implementation-template.xml -->
+   <exslt:implementation src="genericSearchSort.sort.template.xsl" language="exslt:xslt"
+                         version="1" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <!-- enter any use cases; see
+        http://www.exslt.org/submissions/use-case-template.xml -->
+   <exslt:use-case type="example" data="genericSearchSort.sort.data.1.xml"
+                   xslt="genericSearchSort.sort.1.xsl"
+                   result="genericSearchSort.sort.result.1.xml" />
+</exslt:use-cases>
+
+</exslt:function>

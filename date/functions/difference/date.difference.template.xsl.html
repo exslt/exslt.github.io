@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><title>EXSLT - date:difference - XSLT Template Implementation</title><link rel="stylesheet" href="base.css"/></head><body><h1 id="#title"><a href="http://www.exslt.org/">EXSLT</a> - <a href="http://www.exslt.org/date">date</a>:<a href="http://www.exslt.org/date/functions/difference">difference</a> - <a href="http://www.exslt.org/date/functions/difference/date.difference.template.xsl.html">XSLT Template Implementation</a></h1><table><tr><td id="menu"><p class="level1"><a href="index.html">User Page</a></p><p class="level1"><a href="../../../howto.html">How To</a></p><p class="level1"><a href="../../../download.html">Downloads</a></p><p class="level1">Modules</p><p class="level2"><a href="../../../date/date.html">Dates and Times</a></p><p class="level3"><a href="../../functions/add/date.add.html">date:add()</a></p><p class="level3"><a href="../../functions/add-duration/date.add-duration.html">date:add-duration()</a></p><p class="level3"><a href="../../functions/date/date.date.html">date:date()</a></p><p class="level3"><a href="../../functions/date-time/date.date-time.html">date:date-time()</a></p><p class="level3"><a href="../../functions/day-abbreviation/date.day-abbreviation.html">date:day-abbreviation()</a></p><p class="level3"><a href="../../functions/day-in-month/date.day-in-month.html">date:day-in-month()</a></p><p class="level3"><a href="../../functions/day-in-week/date.day-in-week.html">date:day-in-week()</a></p><p class="level3"><a href="../../functions/day-in-year/date.day-in-year.html">date:day-in-year()</a></p><p class="level3"><a href="../../functions/day-name/date.day-name.html">date:day-name()</a></p><p class="level3"><a href="../../functions/day-of-week-in-month/date.day-of-week-in-month.html">date:day-of-week-in-month()</a></p><p class="level3"><a href="../../functions/difference/date.difference.html">date:difference()</a></p><p class="level4"><a href="../../functions/difference/date.difference.function.xsl.html">EXSLT Function</a></p><p class="level4"><a href="../../functions/difference/date.difference.template.xsl.html">XSLT Template</a></p><p class="level4"><a href="../../functions/difference/date.js.html">Javascript</a></p><p class="level4"><a href="../../functions/difference/date.msxsl.xsl.html">Msxsl</a></p><p class="level3"><a href="../../functions/duration/date.duration.html">date:duration()</a></p><p class="level3"><a href="../../functions/format-date/date.format-date.html">date:format-date()</a></p><p class="level3"><a href="../../functions/hour-in-day/date.hour-in-day.html">date:hour-in-day()</a></p><p class="level3"><a href="../../functions/leap-year/date.leap-year.html">date:leap-year()</a></p><p class="level3"><a href="../../functions/minute-in-hour/date.minute-in-hour.html">date:minute-in-hour()</a></p><p class="level3"><a href="../../functions/month-abbreviation/date.month-abbreviation.html">date:month-abbreviation()</a></p><p class="level3"><a href="../../functions/month-in-year/date.month-in-year.html">date:month-in-year()</a></p><p class="level3"><a href="../../functions/month-name/date.month-name.html">date:month-name()</a></p><p class="level3"><a href="../../functions/parse-date/date.parse-date.html">date:parse-date()</a></p><p class="level3"><a href="../../functions/second-in-minute/date.second-in-minute.html">date:second-in-minute()</a></p><p class="level3"><a href="../../functions/seconds/date.seconds.html">date:seconds()</a></p><p class="level3"><a href="../../functions/sum/date.sum.html">date:sum()</a></p><p class="level3"><a href="../../functions/time/date.time.html">date:time()</a></p><p class="level3"><a href="../../functions/week-in-month/date.week-in-month.html">date:week-in-month()</a></p><p class="level3"><a href="../../functions/week-in-year/date.week-in-year.html">date:week-in-year()</a></p><p class="level3"><a href="../../functions/year/date.year.html">date:year()</a></p><p class="level3"><a href="../../elements/date-format/date.date-format.html">date:date-format</a></p><p class="level2"><a href="../../../dyn/dyn.html">Dynamic</a></p><p class="level2"><a href="../../../exsl/exsl.html">Common</a></p><p class="level2"><a href="../../../func/func.html">Functions</a></p><p class="level2"><a href="../../../math/math.html">Math</a></p><p class="level2"><a href="../../../random/random.html">Random</a></p><p class="level2"><a href="../../../regexp/regexp.html">Regular Expressions</a></p><p class="level2"><a href="../../../set/set.html">Sets</a></p><p class="level2"><a href="../../../str/str.html">Strings</a></p><p class="level1"><a href="../../../submissions/">Submissions</a></p><p class="level1"><a href="../../../list">Mailing List</a></p><p class="level1"><a href="../../../contact.html">Contact</a></p></td><td id="content"><p><b>Supported Version: </b>1<br/><b>XML Definition: </b><a href="date.difference.xml">date.difference.xml</a><br/><b>Source: </b><a href="date.difference.template.xsl">date.difference.template.xsl</a></p><h2>Source</h2><pre>&lt;date:month-lengths&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;28&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;30&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;30&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;30&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+   &lt;date:month&gt;30&lt;/date:month&gt;
+   &lt;date:month&gt;31&lt;/date:month&gt;
+&lt;/date:month-lengths&gt;
+&lt;xsl:template name="date:difference"&gt;
+   &lt;xsl:param name="start" /&gt;
+   &lt;xsl:param name="end" /&gt;
+   &lt;xsl:variable name="start-neg"
+                 select="starts-with($start, '-')" /&gt;
+   &lt;xsl:variable name="start-no-neg"&gt;
+      &lt;xsl:choose&gt;
+         &lt;xsl:when test="$start-neg or starts-with($start, '+')"&gt;
+            &lt;xsl:value-of select="substring($start, 2)" /&gt;
+         &lt;/xsl:when&gt;
+         &lt;xsl:otherwise&gt;
+            &lt;xsl:value-of select="$start" /&gt;
+         &lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:variable name="start-no-neg-length"
+                 select="string-length($start-no-neg)" /&gt;
+   &lt;xsl:variable name="start-timezone"&gt;
+      &lt;xsl:choose&gt;
+         &lt;xsl:when test="substring($start-no-neg, $start-no-neg-length) = 'Z'"&gt;Z&lt;/xsl:when&gt;
+         &lt;xsl:otherwise&gt;
+            &lt;xsl:variable name="tz"
+                          select="substring($start-no-neg, $start-no-neg-length - 5)" /&gt;
+            &lt;xsl:if test="(substring($tz, 1, 1) = '-' or                             substring($tz, 1, 1) = '+') and                           substring($tz, 4, 1) = ':'"&gt;
+               &lt;xsl:value-of select="$tz" /&gt;
+            &lt;/xsl:if&gt;
+         &lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:variable name="end-neg"
+                 select="starts-with($end, '-')" /&gt;
+   &lt;xsl:variable name="end-no-neg"&gt;
+      &lt;xsl:choose&gt;
+         &lt;xsl:when test="$end-neg or starts-with($end, '+')"&gt;
+            &lt;xsl:value-of select="substring($end, 2)" /&gt;
+         &lt;/xsl:when&gt;
+         &lt;xsl:otherwise&gt;
+            &lt;xsl:value-of select="$end" /&gt;
+         &lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:variable name="end-no-neg-length"
+                 select="string-length($end-no-neg)" /&gt;
+   &lt;xsl:variable name="end-timezone"&gt;
+      &lt;xsl:choose&gt;
+         &lt;xsl:when test="substring($end-no-neg, $end-no-neg-length) = 'Z'"&gt;Z&lt;/xsl:when&gt;
+         &lt;xsl:otherwise&gt;
+            &lt;xsl:variable name="tz"
+                          select="substring($end-no-neg, $end-no-neg-length - 5)" /&gt;
+            &lt;xsl:if test="(substring($tz, 1, 1) = '-' or                             substring($tz, 1, 1) = '+') and                           substring($tz, 4, 1) = ':'"&gt;
+               &lt;xsl:value-of select="$tz" /&gt;
+            &lt;/xsl:if&gt;
+         &lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:variable name="difference"&gt;
+      &lt;xsl:if test="(not(string($start-timezone)) or                      $start-timezone = 'Z' or                       (substring($start-timezone, 2, 2) <to xmlns=""><span class="entity">&amp;lt;</span></to>= 23 and                       substring($start-timezone, 5, 2) <to xmlns=""><span class="entity">&amp;lt;</span></to>= 59)) and                     (not(string($end-timezone)) or                      $end-timezone = 'Z' or                       (substring($end-timezone, 2, 2) <to xmlns=""><span class="entity">&amp;lt;</span></to>= 23 and                       substring($end-timezone, 5, 2) <to xmlns=""><span class="entity">&amp;lt;</span></to>= 59))"&gt;
+         &lt;xsl:variable name="start-dt"
+                       select="substring($start-no-neg, 1, $start-no-neg-length - string-length($start-timezone))" /&gt;
+         &lt;xsl:variable name="start-dt-length"
+                       select="string-length($start-dt)" /&gt;
+         &lt;xsl:variable name="end-dt"
+                       select="substring($end-no-neg, 1, $end-no-neg-length - string-length($end-timezone))" /&gt;
+         &lt;xsl:variable name="end-dt-length"
+                       select="string-length($end-dt)" /&gt;
+         &lt;xsl:variable name="start-year"
+                       select="substring($start-dt, 1, 4) * (($start-neg * -2) + 1)" /&gt;
+         &lt;xsl:variable name="end-year"
+                       select="substring($end-dt, 1, 4) * (($end-neg * -2) + 1)" /&gt;
+         &lt;xsl:variable name="diff-year"
+                       select="$end-year - $start-year" /&gt;
+         &lt;xsl:choose&gt;
+            &lt;xsl:when test="not(number($start-year) and number($end-year))" /&gt;
+            &lt;xsl:when test="$start-dt-length = 4 or $end-dt-length = 4"&gt;
+               &lt;xsl:choose&gt;
+                  &lt;xsl:when test="$diff-year <to xmlns=""><span class="entity">&amp;lt;</span></to> 0"&gt;
+-P                     &lt;xsl:value-of select="$diff-year * -1" /&gt;
+Y
+                  &lt;/xsl:when&gt;
+                  &lt;xsl:otherwise&gt;
+P                     &lt;xsl:value-of select="$diff-year" /&gt;
+Y
+                  &lt;/xsl:otherwise&gt;
+               &lt;/xsl:choose&gt;
+            &lt;/xsl:when&gt;
+            &lt;xsl:when test="substring($start-dt, 5, 1) = '-' and                              substring($end-dt, 5, 1) = '-'"&gt;
+               &lt;xsl:variable name="start-month"
+                             select="substring($start-dt, 6, 2)" /&gt;
+               &lt;xsl:variable name="end-month"
+                             select="substring($end-dt, 6, 2)" /&gt;
+               &lt;xsl:variable name="diff-month"
+                             select="$end-month - $start-month" /&gt;
+               &lt;xsl:choose&gt;
+                  &lt;xsl:when test="not($start-month <to xmlns=""><span class="entity">&amp;lt;</span></to>= 12 and $end-month <to xmlns=""><span class="entity">&amp;lt;</span></to>= 12)" /&gt;
+                  &lt;xsl:when test="$start-dt-length = 7 or $end-dt-length = 7"&gt;
+                     &lt;xsl:variable name="months"
+                                   select="$diff-month + ($diff-year * 12)" /&gt;
+                     &lt;xsl:variable name="abs-months"
+                                   select="$months * ((($months &gt;= 0) * 2) - 1)" /&gt;
+                     &lt;xsl:variable name="y"
+                                   select="floor($abs-months div 12)" /&gt;
+                     &lt;xsl:variable name="m"
+                                   select="$abs-months mod 12" /&gt;
+                     &lt;xsl:if test="$months <to xmlns=""><span class="entity">&amp;lt;</span></to> 0"&gt;-&lt;/xsl:if&gt;
+                     &lt;xsl:text&gt;P&lt;/xsl:text&gt;
+                     &lt;xsl:if test="$y"&gt;
+                        &lt;xsl:value-of select="$y" /&gt;
+Y
+                     &lt;/xsl:if&gt;
+                     &lt;xsl:if test="$m"&gt;
+                        &lt;xsl:value-of select="$m" /&gt;
+M
+                     &lt;/xsl:if&gt;
+                  &lt;/xsl:when&gt;
+                  &lt;xsl:when test="substring($start-dt, 8, 1) = '-' and                                   substring($end-dt, 8, 1) = '-'"&gt;
+                     &lt;xsl:variable name="start-day"
+                                   select="substring($start-dt, 9, 2)" /&gt;
+                     &lt;xsl:variable name="end-day"
+                                   select="substring($end-dt, 9, 2)" /&gt;
+                     &lt;xsl:if test="$start-day <to xmlns=""><span class="entity">&amp;lt;</span></to>= 31 and $end-day <to xmlns=""><span class="entity">&amp;lt;</span></to>= 31"&gt;
+                        &lt;xsl:variable name="month-lengths"
+                                      select="document('')/*/date:month-lengths/date:month" /&gt;
+                        &lt;xsl:variable name="start-y-1"
+                                      select="$start-year - 1" /&gt;
+                        &lt;xsl:variable name="start-leaps"
+                                      select="floor($start-y-1 div 4) -                                               floor($start-y-1 div 100) +                                               floor($start-y-1 div 400)" /&gt;
+                        &lt;xsl:variable name="start-leap"
+                                      select="(not($start-year mod 4) and $start-year mod 100) or not($start-year mod 400)" /&gt;
+                        &lt;xsl:variable name="start-month-days"
+                                      select="sum($month-lengths[position() <to xmlns=""><span class="entity">&amp;lt;</span></to> $start-month])" /&gt;
+                        &lt;xsl:variable name="start-days"&gt;
+                           &lt;xsl:variable name="days"
+                                         select="($start-year * 365) + $start-leaps +                                                  $start-month-days + $start-day" /&gt;
+                           &lt;xsl:choose&gt;
+                              &lt;xsl:when test="$start-leap"&gt;
+                                 &lt;xsl:value-of select="$days + 1" /&gt;
+                              &lt;/xsl:when&gt;
+                              &lt;xsl:otherwise&gt;
+                                 &lt;xsl:value-of select="$days" /&gt;
+                              &lt;/xsl:otherwise&gt;
+                           &lt;/xsl:choose&gt;
+                        &lt;/xsl:variable&gt;
+                        &lt;xsl:variable name="end-y-1"
+                                      select="$end-year - 1" /&gt;
+                        &lt;xsl:variable name="end-leaps"
+                                      select="floor($end-y-1 div 4) -                                               floor($end-y-1 div 100) +                                               floor($end-y-1 div 400)" /&gt;
+                        &lt;xsl:variable name="end-leap"
+                                      select="(not($end-year mod 4) and $end-year mod 100) or not($end-year mod 400)" /&gt;
+                        &lt;xsl:variable name="end-month-days"
+                                      select="sum($month-lengths[position() <to xmlns=""><span class="entity">&amp;lt;</span></to> $end-month])" /&gt;
+                        &lt;xsl:variable name="end-days"&gt;
+                           &lt;xsl:variable name="days"
+                                         select="($end-year * 365) + $end-leaps +                                                  $end-month-days + $end-day" /&gt;
+                           &lt;xsl:choose&gt;
+                              &lt;xsl:when test="$end-leap"&gt;
+                                 &lt;xsl:value-of select="$days + 1" /&gt;
+                              &lt;/xsl:when&gt;
+                              &lt;xsl:otherwise&gt;
+                                 &lt;xsl:value-of select="$days" /&gt;
+                              &lt;/xsl:otherwise&gt;
+                           &lt;/xsl:choose&gt;
+                        &lt;/xsl:variable&gt;
+                        &lt;xsl:variable name="diff-days"
+                                      select="$end-days - $start-days" /&gt;
+                        &lt;xsl:choose&gt;
+                           &lt;xsl:when test="$start-dt-length = 10 or $end-dt-length = 10"&gt;
+                              &lt;xsl:choose&gt;
+                                 &lt;xsl:when test="$diff-days <to xmlns=""><span class="entity">&amp;lt;</span></to> 0"&gt;
+-P                                    &lt;xsl:value-of select="$diff-days * -1" /&gt;
+D
+                                 &lt;/xsl:when&gt;
+                                 &lt;xsl:otherwise&gt;
+P                                    &lt;xsl:value-of select="$diff-days" /&gt;
+D
+                                 &lt;/xsl:otherwise&gt;
+                              &lt;/xsl:choose&gt;
+                           &lt;/xsl:when&gt;
+                           &lt;xsl:when test="substring($start-dt, 11, 1) = 'T' and                                            substring($end-dt, 11, 1) = 'T' and                                            substring($start-dt, 14, 1) = ':' and                                            substring($start-dt, 17, 1) = ':' and                                            substring($end-dt, 14, 1) = ':' and                                            substring($end-dt, 17, 1) = ':'"&gt;
+                              &lt;xsl:variable name="start-hour"
+                                            select="substring($start-dt, 12, 2)" /&gt;
+                              &lt;xsl:variable name="start-min"
+                                            select="substring($start-dt, 15, 2)" /&gt;
+                              &lt;xsl:variable name="start-sec"
+                                            select="substring($start-dt, 18)" /&gt;
+                              &lt;xsl:variable name="end-hour"
+                                            select="substring($end-dt, 12, 2)" /&gt;
+                              &lt;xsl:variable name="end-min"
+                                            select="substring($end-dt, 15, 2)" /&gt;
+                              &lt;xsl:variable name="end-sec"
+                                            select="substring($end-dt, 18)" /&gt;
+                              &lt;xsl:if test="$start-hour <to xmlns=""><span class="entity">&amp;lt;</span></to>= 23 and $end-hour <to xmlns=""><span class="entity">&amp;lt;</span></to>= 23 and                                             $start-min <to xmlns=""><span class="entity">&amp;lt;</span></to>= 59 and $end-min <to xmlns=""><span class="entity">&amp;lt;</span></to>= 59 and                                             $start-sec <to xmlns=""><span class="entity">&amp;lt;</span></to>= 60 and $end-sec <to xmlns=""><span class="entity">&amp;lt;</span></to>= 60"&gt;
+                                 &lt;xsl:variable name="min-s"
+                                               select="60" /&gt;
+                                 &lt;xsl:variable name="hour-s"
+                                               select="60 * 60" /&gt;
+                                 &lt;xsl:variable name="day-s"
+                                               select="60 * 60 * 24" /&gt;
+                                 &lt;xsl:variable name="start-tz-adj"&gt;
+                                    &lt;xsl:variable name="tz"
+                                                  select="(substring($start-timezone, 2, 2) * $hour-s) +                                                            (substring($start-timezone, 5, 2) * $min-s)" /&gt;
+                                    &lt;xsl:choose&gt;
+                                       &lt;xsl:when test="starts-with($start-timezone, '-')"&gt;
+                                          &lt;xsl:value-of select="$tz" /&gt;
+                                       &lt;/xsl:when&gt;
+                                       &lt;xsl:when test="starts-with($start-timezone, '+')"&gt;
+                                          &lt;xsl:value-of select="$tz * -1" /&gt;
+                                       &lt;/xsl:when&gt;
+                                       &lt;xsl:otherwise&gt;0&lt;/xsl:otherwise&gt;
+                                    &lt;/xsl:choose&gt;
+                                 &lt;/xsl:variable&gt;
+                                 &lt;xsl:variable name="end-tz-adj"&gt;
+                                    &lt;xsl:variable name="tz"
+                                                  select="(substring($end-timezone, 2, 2) * $hour-s) +                                                            (substring($end-timezone, 5, 2) * $min-s)" /&gt;
+                                    &lt;xsl:choose&gt;
+                                       &lt;xsl:when test="starts-with($end-timezone, '-')"&gt;
+                                          &lt;xsl:value-of select="$tz" /&gt;
+                                       &lt;/xsl:when&gt;
+                                       &lt;xsl:when test="starts-with($end-timezone, '+')"&gt;
+                                          &lt;xsl:value-of select="$tz * -1" /&gt;
+                                       &lt;/xsl:when&gt;
+                                       &lt;xsl:otherwise&gt;0&lt;/xsl:otherwise&gt;
+                                    &lt;/xsl:choose&gt;
+                                 &lt;/xsl:variable&gt;
+                                 &lt;xsl:variable name="start-secs"
+                                               select="$start-sec + ($start-min * $min-s) + ($start-hour * $hour-s) + ($start-days * $day-s) + $start-tz-adj" /&gt;
+                                 &lt;xsl:variable name="end-secs"
+                                               select="$end-sec + ($end-min * $min-s) + ($end-hour * $hour-s) + ($end-days * $day-s) + $end-tz-adj" /&gt;
+                                 &lt;xsl:variable name="diff-secs"
+                                               select="$end-secs - $start-secs" /&gt;
+                                 &lt;xsl:variable name="s"
+                                               select="$diff-secs * ((($diff-secs <to xmlns=""><span class="entity">&amp;lt;</span></to> 0) * -2) + 1)" /&gt;
+                                 &lt;xsl:variable name="days"
+                                               select="floor($s div $day-s)" /&gt;
+                                 &lt;xsl:variable name="hours"
+                                               select="floor(($s - ($days * $day-s)) div $hour-s)" /&gt;
+                                 &lt;xsl:variable name="mins"
+                                               select="floor(($s - ($days * $day-s) - ($hours * $hour-s)) div $min-s)" /&gt;
+                                 &lt;xsl:variable name="secs"
+                                               select="$s - ($days * $day-s) - ($hours * $hour-s) - ($mins * $min-s)" /&gt;
+                                 &lt;xsl:if test="$diff-secs <to xmlns=""><span class="entity">&amp;lt;</span></to> 0"&gt;-&lt;/xsl:if&gt;
+                                 &lt;xsl:text&gt;P&lt;/xsl:text&gt;
+                                 &lt;xsl:if test="$days"&gt;
+                                    &lt;xsl:value-of select="$days" /&gt;
+                                    &lt;xsl:text&gt;D&lt;/xsl:text&gt;
+                                 &lt;/xsl:if&gt;
+                                 &lt;xsl:if test="$hours or $mins or $secs"&gt;T&lt;/xsl:if&gt;
+                                 &lt;xsl:if test="$hours"&gt;
+                                    &lt;xsl:value-of select="$hours" /&gt;
+                                    &lt;xsl:text&gt;H&lt;/xsl:text&gt;
+                                 &lt;/xsl:if&gt;
+                                 &lt;xsl:if test="$mins"&gt;
+                                    &lt;xsl:value-of select="$mins" /&gt;
+                                    &lt;xsl:text&gt;M&lt;/xsl:text&gt;
+                                 &lt;/xsl:if&gt;
+                                 &lt;xsl:if test="$secs"&gt;
+                                    &lt;xsl:value-of select="$secs" /&gt;
+                                    &lt;xsl:text&gt;S&lt;/xsl:text&gt;
+                                 &lt;/xsl:if&gt;
+                              &lt;/xsl:if&gt;
+                           &lt;/xsl:when&gt;
+                        &lt;/xsl:choose&gt;
+                     &lt;/xsl:if&gt;
+                  &lt;/xsl:when&gt;
+               &lt;/xsl:choose&gt;
+            &lt;/xsl:when&gt;
+         &lt;/xsl:choose&gt;
+      &lt;/xsl:if&gt;
+   &lt;/xsl:variable&gt;
+   &lt;xsl:value-of select="$difference" /&gt;
+&lt;/xsl:template&gt;</pre><h2>Change History</h2><p><b>Submitted: </b>2001-05-12<br/><b>Creator: </b><a href="mailto:mail@jenitennison.com">Jeni Tennison</a>(<a href="http://www.jenitennison.com/">http://www.jenitennison.com/</a>)</p><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">
+            Returns the difference between two dates as a duration.
+         </dc:description></p><table><tr><th class="rowhead">Version</th><th>Modified</th><th>By</th><th>Details</th></tr><tr><td class="rowhead">1.1</td><td style="width: 5em;">2001-06-11</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">
+            Added implementations in Javascript, XSLT and EXSLT - Functions.
+         </dc:description></p></td></tr><tr><td class="rowhead">1.2</td><td style="width: 5em;">2001-06-16</td><td><a href="mailto:mail@jenitennison.com">Jeni Tennison</a></td><td style="text-align: left;"><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation"><ul><li>Updated Javascript implementation.</li><li>Added Microsoft-specific stylesheet.</li></ul></dc:description></td></tr><tr><td class="rowhead">1.3</td><td style="width: 5em;">2002-08-21</td><td><a href="mailto:craig.stewart@nottingham.ac.uk">Craig Stewart</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">Added 4XSLT and libxslt implementation to the list.</dc:description></p></td></tr><tr><td class="rowhead">1.4</td><td style="width: 5em;">2002-11-12</td><td><a href="mailto:craig.stewart@nottingham.ac.uk">Craig Stewart</a></td><td style="text-align: left;"><p><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:exslt="http://exslt.org/documentation">Updated 4XSLT version to 0.12.0a3.</dc:description></p></td></tr></table></td></tr></table><div id="colophon"><p><a href="http://www.exslt.org/date/functions/difference/date.difference.template.xsl.html">http://www.exslt.org/date/functions/difference/date.difference.template.xsl.html</a> last modified 2002-11-12</p></div></body></html>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE implementation SYSTEM 'implementation-submission.dtd'>
+<!-- ** indicate where entries should be made ** -->
+<!-- comments indicate optional entries -->
+<implementation date="**date of submission**">
+
+   <module>**prefix for module**</module>
+   <function>**function name**</function>
+   <version>**version of function supported by implementation**</version>
+
+   <language>**language of implementation**</language>
+   <src>**filename for implementation**</src>
+
+   <meta>
+      <author email="**email address**" 
+              url="**url**">
+         **author name**
+      </author>
+      <!--
+      <rights>
+         **copyright information**
+      </rights>
+      -->
+      <!--
+      <changes>
+         **changes since last version**
+      </changes>
+      -->
+      <!--
+      <keywords>
+         **comma-separated list of keywords**
+      </keywords>
+      -->
+      <summary>
+         <!-- if you want to use DocBook, add written-in="docbook" to summary element -->
+         **summary of implementation in HTML**
+      </summary>
+   </meta>
+   <documentation>
+      <!-- if you want to use DocBook, add written-in="docbook" to documentation element -->
+      **description of implementation in HTML, including dependencies**
+   </documentation>
+
+</implementation>

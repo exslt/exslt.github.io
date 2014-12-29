@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<function date="2001-06-26">
+
+   <module>str</module>
+   <name>encode-uri</name>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>
+         <p>Encodes a URI string.</p>
+      </summary>
+   </meta>
+   <documentation>
+      <p>
+         The <code>str:encode-uri</code> function returns an encoded URI. The <code>str:encode-uri</code> method does not encode the following characters: <code>":"</code>, <code>"/"</code>, <code>";"</code>, and <code>"?"</code>. 
+      </p>
+   </documentation>
+   <definition>
+      <return type="string" />
+		<arg name="string" type="string" default="''" optional="no" />
+   </definition>
+
+</function>

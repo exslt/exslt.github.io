@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE use-case SYSTEM 'use-case-submission.dtd'>
+<use-case date="2001-06-24">
+
+   <module>regexp</module>
+   <function>match</function>
+   <version>1</version>
+
+   <data>regexp.match.data.1.xml</data>
+   <xslt>regexp.match.1.xsl</xslt>
+   <result>regexp.match.result.1.xml</result>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+   </meta>
+
+</use-case>

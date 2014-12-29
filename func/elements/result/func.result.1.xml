@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/element.xsl" ?>
+<exslt:element xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="func" status="new">
+
+<exslt:name>result</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="exsl:return">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>return</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:return.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-02-25</dc:date>
+         <dc:description>First draft of the functionality of <code>exsl:return</code>.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml">
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+		<p>
+			The <code>exsl:return</code> element works in a similar way to variable-binding elements as described in <a class="offsite" href="http://www.w3.org/TR/xslt#variable-values">Section 11.2</a> of the XSLT 1.0 Recommendation.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: <code>exsl:return</code> name</strong> - should <code>exsl:return</code> be called exsl:result instead?
+			</p>
+			<p>
+				<strong>Issue: exsl:reference-of</strong> - should it be possible to return node sets by building them up gradually through an extension element such as <code>exsl:reference-of</code>?  It would ease the return of multiple nodes from a function.  This is achievable by building an RTF with IDs pointing to the relevant nodes instead.
+			</p>
+		</div>
+		<p>
+			It is an error for <code>exsl:return</code> to appear outside the content of <a href="../function"><code>exsl:function</code></a>.  For example, the following is an error:
+		</p>
+		<pre class="error">
+&lt;xsl:template match="foo">
+   &lt;exsl:return select="." />
+&lt;/xsl:template></pre>
+		<div class="issue">
+			<p>
+				<strong>Issue: <code>exsl:return</code> parent</strong> - should the use of <code>exsl:return</code> be restricted to within <a href="../function"><code>exsl:function</code></a> or is this too restrictive?  Are there any other places where <code>exsl:return</code> might be useful?
+			</p>
+		</div>
+		<p>
+			It is an error if instantiating the content of the <a href="../function"><code>exsl:function</code></a> element results in the instantion of more than one <code>exsl:return</code> elements.  An XSLT processor may signal the error; if it does not signal the error, it must recover by ignoring all <code>exsl:return</code> elements after the first.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Multiple <code>exsl:return</code> error</strong> - should instantiating <code>exsl:return</code> more than once be an unrecoverable error?
+			</p>
+		</div>
+		<p>
+			The following is an error if the value of the context node when the function is called is equal to the string <code>'yes'</code>, as two <code>exsl:return</code> elements are instantiated: one within the <code>xsl:if</code> and one directly within the <a href="../function"><code>exsl:function</code></a>:
+		</p>
+		<pre>
+&lt;exsl:function name="my:func1">
+   &lt;xsl:if test=". = 'yes'">
+      &lt;exsl:return select="true()" />
+   &lt;/xsl:if>
+   &lt;exsl:return select="false()" />
+&lt;/exsl:function></pre>
+		<p>
+			If an XSLT processor recovers from this error, the above function is equivalent to:
+		</p>
+		<pre>
+&lt;exsl:function name="my:func1">
+   &lt;xsl:choose>
+      &lt;xsl:when test=". = 'yes'">
+	      &lt;exsl:return select="true()" />
+	   &lt;/xsl:when>
+	   &lt;xsl:otherwise>
+	      &lt;exsl:return select="false()" />
+	   &lt;/xsl:otherwise>
+   &lt;/xsl:choose>
+&lt;/exsl:function></pre>
+		<p>
+			It is an error if an <code>exsl:return</code> element occurs within an <code>exsl:return</code> element.  Thus the following is an error:
+		</p>
+		<pre class="error">
+&lt;exsl:function name="my:func2">
+   &lt;exsl:return>
+      &lt;exsl:return select="." />
+   &lt;/exsl:return>
+&lt;/exsl:function></pre>
+		<p>
+			It is an error if instantiating the content of a variable-binding element (i.e. <a class="offsite" href="http://www.w3.org/TR/xslt#element-variable"><code>xsl:variable</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>) results in the instantiation of an <code>exsl:return</code> element. Thus the following is an error:
+		</p>
+		<pre class="error">
+&lt;exsl:function name="my:func3">
+   &lt;xsl:variable name="foo">
+      &lt;exsl:return select="." />
+   &lt;/xsl:variable>
+&lt;/exsl:function></pre>
+		<p>
+			If no <code>exsl:return</code> element is instantiated during the execution of a function, the return value for the function is the empty string (<code>''</code>).
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Return values</strong> - should the default return value from a function be a node set instead of an empty string?  Attempting to interpret a string as a node set will lead to an unrecoverable error.  For example:
+			</p>
+			<pre>
+&lt;exsl:function name="my:root">
+   &lt;xsl:if test="false()">
+      &lt;exsl:return select="/" />
+   &lt;/xsl:if>
+&lt;/exsl:function></pre>
+			<p>
+				would (accidentally) return an empty string.  If it was used in:
+			</p>
+			<pre>&lt;xsl:variable name="foo" select="my:root()/foo" /></pre>
+			<p>
+				this would cause an unrecoverable error.
+			</p>
+		</div>
+
+		<h3>Return Values</h3>
+
+		<p>
+			The <code>exsl:return</code> element can specify the value of the variable in three alternative ways.
+		</p>
+		<ul>
+			<li>
+				<p>
+					If the <code>exsl:return</code> element has a <code>select</code> attribute, then the value of the attribute must be an expression and the returned value is the object that results from evaluating the expression. In this case, the content must be empty.
+				</p>
+				<div class="issue">
+					<p>
+						<strong>Issue: <code>exsl:return</code> expressions</strong> - should the <code>select</code> attribute on <code>exsl:return</code> hold an extended XPath syntax that includes things such as conditional constructs?
+					</p>
+				</div>
+			</li>
+			<li>
+				<p>
+					If the <code>exsl:return</code> element does not have a <code>select</code> attribute and has non-empty content (i.e. the <code>exsl:return</code> element has one or more child nodes), then the content of the <code>exsl:return</code> element specifies the value.  The content of the <code>exsl:return</code> element is a template, which is instantiated to give the returned value. The value is a result tree  fragment equivalent to a node-set containing just a single root node having as children the sequence of nodes produced by instantiating the template. The base URI of the nodes in the result tree fragment is the base URI of the <code>exsl:return</code> element.
+				</p>
+				<p>
+					It is an error if a member of the sequence of nodes created by instantiating the template is an attribute node or a namespace node, since a root node cannot have an attribute node or a namespace node as a child. An XSLT processor may signal the error; if it does not signal the error, it must recover by not adding the attribute node or namespace node.
+				</p>
+			</li>
+			<li>
+				<p>
+					If the <code>exsl:return</code> element has empty content and does not have a <code>select</code> attribute, then the returned value is an empty string. Thus
+				</p>
+				<pre>&lt;exsl:return /></pre>
+				<p>
+					is equivalent to
+				</p>
+				<pre>&lt;exsl:return select="''"/></pre>
+			</li>
+		</ul>
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:sequence>
+      <xs:group ref="xsl:template" />
+   </xs:sequence>
+   <xs:attribute name="select" type="xpath:expression" />
+</exslt:definition>
+
+<exslt:implementations />
+
+<exslt:use-cases />
+
+</exslt:element>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>datetime</module>
+   <name>parseDate</name>
+   <meta>
+      <author email="chris@bayes.co.uk" url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>Returns a formated date string based on a formated date string.</summary>
+   </meta>
+   <definition>
+        <return type="string"/>
+	<arg name="date" type="string" default="1970" />
+	<arg name="format" type="string" default="1" />	
+   </definition>
+</function>

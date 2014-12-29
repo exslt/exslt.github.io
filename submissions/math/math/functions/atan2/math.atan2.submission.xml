@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>math</module>
+   <name>atan2</name>
+   <meta>
+      <author email="cutlass@secure0.com" url="http://www.on-idle.com">James Fuller</author>
+      <summary>Returns the atan2 value of the passed arguements.</summary>
+   </meta>
+   <documentation>
+ <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+         The <code>math:atan2</code> function returns the angle ( in radians )  from the X axis to a point (y,x).
+      </p>
+      <p>
+         Value1 is a number arguement cooresponding to y of point (y,x).
+      </p>
+      <p>
+         Value2 is a number arguement cooresponding to x of point (y,x).
+      </p>
+      <p>
+        If the passed number arguements is empty, then NaN is returned. 
+      </p>        
+   </html:div>
+   </documentation>
+   <definition>
+        <return type="number"/>
+	<arg name="value1" type="number" default="0" />
+	<arg name="value2" type="number" default="0" />
+   </definition>
+</function>

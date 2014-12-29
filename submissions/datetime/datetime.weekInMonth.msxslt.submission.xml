@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE implementation SYSTEM 'implementation-submission.dtd'>
+<implementation date="2001-06-09">
+
+   <module>datetime</module>
+   <function>weekInMonth</function>
+   <version>1</version>
+
+   <language>exslt:msxslt</language>
+   <src>datetime.weekInMonth.msxslt.xsl</src>
+
+</implementation>

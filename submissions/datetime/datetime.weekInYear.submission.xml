@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>datetime</module>
+   <name>weekInYear</name>
+   <meta>
+      <author email="chris@bayes.co.uk" url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>Returns the current number of week in the year. If a date is supplied it returns the number of week in year of date arguement</summary>
+   </meta>
+   <definition>
+        <return type="number"/>
+   </definition>
+</function>

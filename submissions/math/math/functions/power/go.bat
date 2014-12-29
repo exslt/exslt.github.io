@@ -1,0 +1,1 @@
+java -cp c:\\exsltlib\\saxon\\saxon.jar com.icl.saxon.StyleSheet math.power.1.xml math.power.1.xsl

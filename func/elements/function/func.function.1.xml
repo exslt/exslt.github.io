@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/element.xsl" ?>
+<exslt:element xmlns:exslt="http://exslt.org/documentation" 
+               version="1" module="func" status="revised">
+
+<exslt:name>function</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="exsl:function">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>function</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:function.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-02-25</dc:date>
+         <dc:description>First draft of the functionality of <code>exsl:function</code>.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml">
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+		<p>
+			Extension functions written in XSLT are defined by the <code>exsl:function</code> element, which can occur only at the top level of the stylesheet.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Wrapper</strong> - should there be a wrapper element to contain the <code>exsl:function</code> elements in a document?
+			</p>
+			<p>
+				<strong>Issue: Conditions</strong> - should <code>xsl:if</code> and <code>xsl:choose</code> be allowed as direct children of <code>exsl:function</code>?  It makes it easier to do conditional processing if they are.  But conditional processing could alternatively be achieved through an extension to XPath syntax that gave a conditional construct.
+			</p>
+		</div>
+		<p>
+			An <code>exsl:function</code> element must have a <code>name</code> attribute, indicating the name of the function.  The value of the <code>name</code> attribute is a <a class="offsite" href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a>, which is expanded as described in <a class="offsite" href="http://www.w3.org/TR/xslt#qname">Section 2.4 [Qualified Names]</a> in the XSLT 1.0 Recommendation.  It is an error if the namespace URI of the expanded name of the function is null - extension functions must not be in a null namespace.
+		</p>
+		<p class="note">
+			Note: the rules on resolving qualified names entail that if no prefix is defined, the namespace URI resolves to the null namespace.  Thus, it is an error if the qualified name specified does not have a prefix.
+		</p>
+		<p>
+			When an extension function defined with <code>exsl:function</code> is called, the content of the <code>exsl:function</code> is instantiated to give the return value of the function.
+		</p>
+		<p>
+			It is an error if the instantiation of the content of <code>exsl:function</code> results in the creation of result tree nodes unless they are created as part of a result tree fragment.  An XSLT processor may signal the error; if it does not signal the error, it must recover by ignoring the result tree nodes.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: RTF error</strong> - should generating result nodes be an unrecoverable error?
+			</p>
+		</div>
+		<p>
+			The implication of this is that <a class="offsite" href="http://www.w3.org/TR/xslt#literal-result-element">literal result elements</a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-copy"><code>xsl:copy</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-copy-of"><code>xsl:copy-of</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-element"><code>xsl:element</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-attribute"><code>xsl:attribute</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-processing-instruction"><code>xsl:processing-instruction</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-comment"><code>xsl:comment</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-text"><code>xsl:text</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-value-of"><code>xsl:value-of</code></a> and <a class="offsite" href="http://www.w3.org/TR/xslt#element-number"><code>xsl:number</code></a> elements must not be instantiated during the instantiation of the content of <code>exsl:function</code>, unless they are instantiated during the creation of a result tree fragment (i.e. within <a class="offsite" href="http://www.w3.org/TR/xslt#element-variable"><code>xsl:variable</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>, <a class="offsite" href="http://www.w3.org/TR/xslt#element-with-param"><code>xsl:with-param</code></a> or <a href="../result"><code>exsl:return</code></a>).
+		</p>
+		<p>
+			It is an error if the instantiation of the content of <code>exsl:function</code> results in a call to or application of a template unless the template is called or applied within a variable-binding element such as <a class="offsite" href="http://www.w3.org/TR/xslt#element-variable"><code>xsl:variable</code></a> or <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> or within <a href="../result"><code>exsl:return</code></a>.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Templates</strong> - should it be possible to call or apply templates within <code>exsl:function</code> outside variable-binding elements?  Given that generating result nodes is an error, the only purpose of calling or applying templates would be for templates that generate messages.  This is achievable using an extension function instead.
+			</p>
+		</div>
+		<p>
+			It is an error if the instantiation of the content of <code>exsl:function</code> results in an <a class="offsite" href="http://www.w3.org/TR/xslt#element-for-each"><code>xsl:for-each</code></a> element being instantiated unless the <a class="offsite" href="http://www.w3.org/TR/xslt#element-for-each"><code>xsl:for-each</code></a> is within a variable-binding element such as <a class="offsite" href="http://www.w3.org/TR/xslt#element-variable"><code>xsl:variable</code></a> or <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> or within <a href="../result"><code>exsl:return</code></a>.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: <a class="offsite" href="http://www.w3.org/TR/xslt#element-for-each"><code>xsl:for-each</code></a></strong> - should <a class="offsite" href="http://www.w3.org/TR/xslt#element-for-each"><code>xsl:for-each</code></a> be allowed within <code>exsl:function</code> outside variable-binding elements?  It would ease the return of node sets created (a) from other documents or (b) involving sorting the node set in other than document order. This is achievable by building an RTF with IDs referring to the relevant nodes instead.
+			</p>
+		</div>
+
+		<h3>Defining Function Arguments</h3>
+
+		<p>
+			Arguments for functions are defined with the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> element, as specified in <a class="offsite" href="http://www.w3.org/TR/xslt#variables">Section 11 [Variables and Parameters]</a> of the XSLT 1.0 Recommendation.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Arguments</strong> - should arguments be specified with the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> element or through attributes on <code>exsl:function</code>?  One problem with specifying them as arguments is that the attribute order is not guaranteed; this wouldn't be a problem if arguments were passed by name rather than position.
+			</p>
+		</div>
+		<p>
+			When an extension function is called with arguments passed by position, the values passed as arguments are assigned to parameters according to the position of the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>.  The first argument is assigned to the first parameter, the second to the second and so on.  The presence of an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates that an argument is expected for the function but does not imply that an argument <em>has</em> to be passed to the function.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Optional arguments</strong> - should there be an extension attribute on <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> that indicates whether an argument is optional?
+			</p>
+		</div>
+		<p>
+			An XSLT processor must not signal an error if an extension function is called with fewer arguments than there are parameters defined for the extension function.  It is an error to call a function with more arguments than there are parameters defined for the extension function.  An XSLT processor may signal the error; if it does not signal the error, then it must recover by ignoring the extra arguments.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Argument error</strong> - should trying to pass more arguments than there are <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> elements be considered an error?  Should it be an unrecoverable error?
+			</p>
+		</div>
+		<p>
+			As an example, take the following function definition:
+		</p>
+		<pre>
+&lt;exsl:function name="my:func">
+   &lt;xsl:param name="foo" />
+   &lt;xsl:param name="bar" select="false()" />
+   ...
+&lt;/exsl:function></pre>
+		<p>
+			All the following function calls are legal:
+		</p>
+		<pre>
+my:func()
+my:func('Fred')
+my:func('Fred', true())
+my:func('Fred', 'Barney')</pre>
+		<p>
+			The following function call is illegal:
+		</p>
+		<pre class="error">my:func('Fred', true(), 'Barney')</pre>
+		<p>
+			The value specified by an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates the default value for an argument if that argument is not given in a function call, but does not indicate the acceptable value types for the function.
+		</p>
+		<div class="issue">
+			<p>
+				<strong>Issue: Argument types</strong> - should there be an extension attribute on <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> that indicates the value type of an argument?
+			</p>
+		</div>
+
+		<h3>Defining Function Return Values</h3>
+
+		<p>
+			When a function is called, the content of the <code>exsl:function</code> element is instantiated to give the return value of the function.  The instantiation of the content of the <code>exsl:function</code> element may involve the instantiation of an <a href="../result"><code>exsl:return</code></a> element.
+		</p>
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:sequence>
+      <xs:element ref="xsl:param"
+                  minOccurs="0" maxOccurs="unbounded" />
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+         <xs:element ref="xsl:variable" />
+         <xs:element ref="xsl:if" />
+         <xs:element ref="xsl:choose" />
+         <xs:element ref="xsl:message" />
+      </xs:choice>
+      <xs:sequence minOccurs="0">
+         <xs:element ref="func:result" />
+         <xs:element ref="xsl:fallback" minOccurs="0" />
+      </xs:sequence>
+   </xs:sequence>
+   <xs:attribute name="name" type="xsl:QName" use="required" />
+</exslt:definition>
+
+<exslt:implementations />
+
+<exslt:use-cases />
+
+</exslt:element>

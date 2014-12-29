@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>math</module>
+   <name>sqrt</name>
+   <meta>
+      <author email="cutlass@secure0.com" url="http://www.on-idle.com">James Fuller</author>
+      <summary>Returns the sqrt value of the passed arguement.</summary>
+   </meta>
+   <documentation>
+ <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+         The <code>math:sqrt</code> function returns the square root of a number.
+      </p>
+      <p>
+        If the passed number arguement is negative, the return value is zero.
+      </p>
+      <p>
+        If the passed number arguements is empty, then NaN is returned. 
+      </p>        
+   </html:div>
+   </documentation>
+   <definition>
+        <return type="number"/>
+	<arg name="value" type="number" default="0" />
+   </definition>
+</function>

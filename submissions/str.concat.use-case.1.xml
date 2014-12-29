@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE use-case SYSTEM 'use-case-submission.dtd'>
+<use-case date="2001-06-26">
+
+   <module>str</module>
+   <function>concat</function>
+   <version>1</version>
+
+   <data>str.concat.data.1.xml</data>
+   <xslt>str.concat.1.xsl</xslt>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+   </meta>
+
+</use-case>

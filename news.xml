@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+   <p>
+   14/10/2003 Added a new module <code>random</code> with the function <code>random:random-sequence</code>.
+   </p>
+   <p>
+   30/01/2003 Added Xalan-J vendor support for dyn:evaluate() function.
+   </p>
+   <p>
+   02/12/2002 Added new versions for both <code>str:encode-uri</code> and <code>str:decode-uri</code>.
+   </p><p>
+   12/11/2002 Updated 4XSLT version support to 0.12.0a3 and fixed a few errors in the exsl:node-set page (thanks to Mike Brown for spotting them!).
+   </p><p>
+   17/10/2001 Daniel Veillard's <a href="http://xmlsoft.org/XSLT/">libXSLT</a> XSLT processor now implements many EXSLT extension functions thanks to Thomas Broyer implementation.
+   </p><p>
+   21/08/2002 Added Xalan-J, libxslt and 4XSLT vendor support of various functions. Thanks to everyone involved, esp. Daniel Veillard and Mike Brown.
+   </p>
+</div>

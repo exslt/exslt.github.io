@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<!-- ** indicate where entries should be made ** -->
+<!-- comments indicate optional entries -->
+<function date="2002-10-14">
+
+   <module>str</module>
+   <name>decode-uri</name>
+
+   <meta>
+      <author email="craig.stewart@nottingham.ac.uk" 
+              url="">
+         Craig Stewart
+      </author>
+      <!--
+      <rights>
+         **copyright information**
+      </rights>
+      -->
+      <!--
+      <changes>
+         **changes since last version**
+      </changes>
+      -->
+      <!--
+      <keywords>
+         **comma-separated list of keywords**
+      </keywords>
+      -->
+      <summary>
+         <!-- if you want to use DocBook, add written-in="docbook" to summary element -->
+         This function returns the base-uri for each document and element node.
+      </summary>
+   </meta>
+   <documentation>
+      <!-- if you want to use DocBook, add written-in="docbook" to documentation element -->
+         When called this function returns the base-uri for each document and element node. For all other types of node it returns an empty value.<br>
+         [example?]
+   </documentation>
+   <definition>
+      <!-- add documentation in HTML inside return element if you want -->
+      <!-- if you want to use DocBook, add written-in="docbook" to return element -->
+      <return type="base-uri" />
+      <!-- repeat arg elements as necessary -->
+      <!-- add documentation in HTML inside arg elements if you want -->
+      <!-- if you want to use DocBook, add written-in="docbook" to arg element -->
+      <!--
+      <arg name="**argument name**" 
+           type="**argument value type**" 
+           default="**default value for argument**"
+           optional="**yes or no (default no)**" />
+      -->
+   </definition>
+
+</function>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>datetime</module>
+   <name>weekInMonth</name>
+   <meta>
+      <author email="chris@bayes.co.uk" url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>Returns the current week,as a number 1 through 4. If a date is supplied it returns the week as a number.</summary>
+   </meta>
+   <definition>
+        <return type="number"/>
+   </definition>
+</function>

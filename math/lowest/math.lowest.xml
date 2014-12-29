@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/function.use-cases.xsl"?>
+<!-- <!DOCTYPE exslt:function SYSTEM 'function.dtd'> -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+                version="1" module="math" status="new">
+
+<exslt:name>lowest</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="math:lowest">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>math</dc:subject>
+   <dc:subject>lowest</dc:subject>
+   <dc:subject>minimum</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="math:lowest.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-28</dc:date>
+         <dc:description>Returns the nodes with the minimum value in a node set.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns="">
+   <section>
+      <para>
+         The <function>math:lowest</function> function returns the nodes for which the result of converting the string-value of the node to a number is minimum value for the node set, as calculated with <a href="/math/min">math:min</a>.
+      </para>
+      <para>
+         The <literal>math:lowest</literal> template returns a result tree fragment consisting of copies of the nodes as returned by the function.
+      </para>
+   </section>
+</exslt:doc>
+
+<exslt:definition>
+   <exslt:return type="node-set" />
+   <exslt:arg name="nodes" type="node-set" default="/.." />
+</exslt:definition>
+
+<exslt:implementations>
+   <exslt:implementation src="math.lowest.function.xsl" language="exslt:exslt" 
+                         version="1" />
+   <exslt:implementation src="math.lowest.template.xsl" language="exslt:xslt" 
+                         version="1" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <exslt:use-case type="example" data="math.lowest.data.1.xml"
+                   xslt="math.lowest.1.xsl" result="math.lowest.result.1.xml" />
+   <exslt:use-case type="example" template="yes" data="math.lowest.data.1.xml"
+                   xslt="math.lowest.2.xsl" result="math.lowest.result.1.xml" />
+   <exslt:use-case type="boundary" data="math.lowest.data.2.xml"
+                   xslt="math.lowest.1.xsl" result="math.lowest.result.2.xml" />
+   <exslt:use-case type="boundary" template="yes" data="math.lowest.data.2.xml"
+                   xslt="math.lowest.2.xsl" result="math.lowest.result.2.xml" />
+   <exslt:use-case type="error" data="math.lowest.data.1.xml"
+                   xslt="math.lowest.3.xsl">
+      <exslt:doc xmlns="">
+         <para>
+            This use case shows an error when the function is passed a 
+            number as the value of the first argument.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+   <exslt:use-case type="error" template="yes" data="math.lowest.data.1.xml"
+                   xslt="math.lowest.4.xsl">
+      <exslt:doc>
+         <para>
+            This use case shows an error when the function is passed a 
+            number as the value of the <parameter>nodes</parameter> 
+            parameter.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+</exslt:use-cases>
+
+</exslt:function>

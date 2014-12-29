@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<function date="2001-06-09">
+   <module>math</module>
+   <name>random</name>
+   <meta>
+      <author email="cutlass@secure0.com" url="http://www.on-idle.com">James Fuller</author>
+      <summary>Returns a random value.</summary>
+   </meta>
+   <documentation>
+ <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+         The <code>math:random</code> function returns a random number from 0 to 1.
+      </p>
+      <p>
+        There is no passed arguement. 
+      </p>        
+   </html:div>
+   </documentation>
+   <definition>
+        <return type="number"/>
+   </definition>
+</function>

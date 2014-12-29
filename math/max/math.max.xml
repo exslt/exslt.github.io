@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/function.use-cases.xsl"?>
+<!-- <!DOCTYPE exslt:function SYSTEM 'function.dtd'> -->
+<exslt:function xmlns:exslt="http://exslt.org/documentation" 
+                version="1" module="math" status="new">
+
+<exslt:name>max</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="math:max">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>math</dc:subject>
+   <dc:subject>max</dc:subject>
+   <dc:subject>maximum</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="math:max.1">
+         <exslt:version>1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-28</dc:date>
+         <dc:description>Returns the maximum value from a node-set.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns="">
+   <section>
+      <para>
+         The <function>math:max</function> function returns the maximum, for each node in the argument node-set, of the result of converting the string-values of the node to a number using the <ulink URL="http://www.w3.org/TR/xpath#function-number"> <function>number</function></ulink> function.  The numbers are compared as with the <literal>&gt;</literal> operator.  If the node set is empty, <returnvalue>NaN</returnvalue> is returned.      
+      </para>
+      <para>
+         The <literal>math:max</literal> template returns a result tree fragment whose string value is the result of turning the number returned by the function into a string.      
+      </para>
+   </section>
+</exslt:doc>
+
+<exslt:definition>
+   <exslt:return type="number" />
+   <exslt:arg name="nodes" type="node-set" default="/.." />
+</exslt:definition>
+
+<exslt:implementations>
+   <exslt:implementation src="math.max.function.xsl" language="exslt:exslt" 
+                         version="1" />
+   <exslt:implementation src="math.max.template.xsl" language="exslt:xslt" 
+                         version="1" />
+</exslt:implementations>
+
+<exslt:use-cases>
+   <exslt:use-case type="example" data="math.max.data.1.xml"
+                   xslt="math.max.1.xsl" result="math.max.result.1.xml" />
+   <exslt:use-case type="example" template="yes" data="math.max.data.1.xml"
+                   xslt="math.max.2.xsl" result="math.max.result.1.xml" />
+   <exslt:use-case type="boundary" data="math.max.data.2.xml"
+                   xslt="math.max.1.xsl" result="math.max.result.2.xml" />
+   <exslt:use-case type="boundary" template="yes" data="math.max.data.2.xml"
+                   xslt="math.max.2.xsl" result="math.max.result.2.xml" />
+   <exslt:use-case type="error" data="math.max.data.1.xml"
+                   xslt="math.max.3.xsl">
+      <exslt:doc xmlns="">
+         <para>
+            This use case shows an error when the function is passed a 
+            number as the value of the first argument.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+   <exslt:use-case type="error" template="yes" data="math.max.data.1.xml"
+                   xslt="math.max.4.xsl">
+      <exslt:doc>
+         <para>
+            This use case shows an error when the function is passed a 
+            number as the value of the <parameter>nodes</parameter> 
+            parameter.
+         </para>
+      </exslt:doc>
+   </exslt:use-case>
+</exslt:use-cases>
+
+</exslt:function>

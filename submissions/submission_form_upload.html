@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "/schema/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml">
+<head>
+<title>EXSLT Submissions</title>
+<link rel="stylesheet" href="../style/base.css"/>
+</head>
+
+<body>
+<h1>Function Submission Form: File Upload</h1>
+<table>
+<tr>
+
+<td id="content">
+<div>
+<p>
+Upload all your relevant xsl and xml files for this function.
+</p>
+<p class="note">
+- multiple implementations or usecases will require to fill in previous function definition form again, this will be streamlined in the future.
+</p>
+<br>
+<form method="POST" ENCTYPE="multipart/form-data" action="http://195.40.167.142/exslt/uploadfile.cfm" name="submission">
+<input type="hidden" name="email" value="admin@exlst.org">
+
+<h2>Upload Implementation</h2>
+
+<br>
+<table>
+<tr>
+<td style="text-align:left;" >
+implementation source file ( actual implementation of function )<br />
+<input name="exslt_implementation_src1" type="file" size="50"/>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+
+
+<br><br>
+<h2>Upload Use Case</h2>
+
+<br>
+<table>
+<tr>
+<td style="text-align:left;" >
+<br>
+stylesheet (module-prefix.function-name.number.xsl)
+<br>
+<input name="exslt_usecase_stylesheet1" type="file" size="50"/>
+<br><br>
+data (module-prefix.function-name.data.number.xsl)
+<br>
+<input name="exslt_usecase_data1" type="file" size="50"/>
+<br><br>
+result (module-prefix.function-name.result.number.xsl)
+<br>
+<input name="exslt_usecase_result1" type="file" size="50"/>&nbsp;&nbsp;
+
+
+</td>
+</tr>
+</table>
+
+
+
+<hr/>
+
+<input type="submit" value="Upload Function Files"/>
+</form>
+</div>
+</td>
+</table>
+
+
+<div id="colophon">
+<p>
+<a href="http://www.exslt.org/submissions.html">http://www.exslt.org/submissions.html</a>
+</p>
+</div>
+</body>
+</html>

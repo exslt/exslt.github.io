@@ -1,0 +1,7 @@
+../../../howto.html
+../../index.html
+set.intersection.html
+set.intersection.use-case.1.html
+set.intersection.data.1.xml
+set.intersection.1.xsl
+set.intersection.result.1.xml

@@ -1,0 +1,1 @@
+function ceil(arg){ return Math.ceil(arg);}

@@ -1,0 +1,6 @@
+../../../howto.html
+../../index.html
+str.align.html
+str.align.use-case.1.html
+str.align.1.xsl
+str.align.data.1.xml

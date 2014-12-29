@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- enter the filename for the implementation in the src attribute -->
+<!-- enter the language of the implementation in the language attribute; this 
+     should be a QName as is accepted by xsl:script; there are two special ones:
+        exslt:xslt - a template with functionality similar to the function
+        exslt:exslt - an EXSLT - Functions implementation of the function -->
+<!-- enter the version of the function that's supported by the implementation 
+     -->
+<exslt:implementation xmlns:exslt="http://exslt.org/documentation"              
+                      src="implementation-file"
+                      language="implementation-language" 
+                      version="implementation-version">
+
+<!-- enter qualified name for function '.' language suffix in ID attribute -->
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="module:function.language-suffix">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject><!-- enter module prefix --></dc:subject>
+   <dc:subject><!-- enter function name --></dc:subject>
+   <dc:subject><!-- enter language of implementation --></dc:subject>
+   <!-- enter any other keywords in dc:subject elements -->
+   <!-- <dc:rights> -->
+      <!-- enter any copyright information or the key string 'public domain' -->
+   <!-- </dc:rights> -->
+   <exslt:revision>
+      <!-- enter implementation name as above '.' version of implementation in 
+           ID attribute -->
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="module:function.language-suffix.version">
+         <exslt:version><!-- enter version of implementation --></exslt:version>
+         <!-- enter email address in email attribute (optional) -->
+         <!-- enter URL in url attribute (optional) -->
+         <!-- add no-spam="no" if you don't mind your email address appearing on
+              web pages -->
+         <dc:creator email="your@email.address.com" 
+                     url="http://your.website.com/">
+            <!-- enter your name -->
+         </dc:creator>
+         <dc:date><!-- enter the date in YYYY-MM-DD format --></dc:date>
+         <dc:description xmlns="http://www.w3.org/1999/xhtml">
+            <!-- enter a brief description of the implementation; you may use 
+                 XHTML -->
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="">
+   <!-- choose whether to document the implementation in DocBook or XHTML 
+        Strict; include documentation about any prerequisites for the 
+        implementation -->
+   <!-- <section> -->
+      <!-- enter DocBook documentation for the implementation -->
+   <!-- </section> -->
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <!-- enter XHTML documentation for the implementation; use h3-h6 elements 
+           for headings -->
+   </html:div>
+</exslt:doc>
+
+</exslt:implementation>                     

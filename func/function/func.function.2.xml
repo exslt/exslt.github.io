@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../style/element.xsl" ?>
+<exslt:element xmlns:exslt="http://exslt.org/documentation" 
+               version="2" module="func" status="revised">
+
+<exslt:name>function</exslt:name>
+
+<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/"
+                 ID="exsl:function">
+   <dc:subject>EXSLT</dc:subject>
+   <dc:subject>function</dc:subject>
+   <dc:rights>public domain</dc:rights>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:function.2">
+         <exslt:version>2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-02</dc:date>
+         <dc:description>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+               <li>
+                  Changed body of <a href="#element-function"><code>exsl:function</code></a> to match XSLT templates.
+               </li>
+               <li>
+                  Changed description of <a href="#element-function"><code>exsl:function</code></a> to indicate that the functions declared with it are added to the function library used in the XPath context in evaluating expressions and patterns.
+               </li>
+               <li>
+                  Added recoverable error where more than one function is defined with the same name.
+               </li>
+               <li>
+                  Added issue regarding use of <code>xsl:param</code>.
+               </li>
+               <li>
+                  Added definition of the current node and current node list for the instantiation of the content of <a href="#element-function"><code>exsl:function</code></a>.
+               </li>
+            </ul>
+         </dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:function.2.1">
+         <exslt:version>2.1</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-06</dc:date>
+         <dc:description><code>exsl:function</code> moved into a separate module, <a href="/func">EXSLT - Functions</a>.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+   <exslt:revision>
+      <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                       xmlns:dc="http://purl.org/dc/elements/1.1/"
+                       ID="exsl:function.2.2">
+         <exslt:version>2.2</exslt:version>
+         <dc:creator email="mail@jenitennison.com" 
+                     url="http://www.jenitennison.com">Jeni Tennison</dc:creator>
+         <dc:date>2001-03-10</dc:date>
+         <dc:description>Examples changed to reflect changes in other modules.</dc:description>
+      </rdf:Description>
+   </exslt:revision>
+</rdf:Description>
+
+<exslt:doc xmlns:html="http://www.w3.org/1999/xhtml">
+   <html:div xmlns="http://www.w3.org/1999/xhtml">
+      <div class="issue">
+         <p>
+            <strong>Issue: <code>exsl:function</code> content</strong> - should the content of <code>exsl:function</code> be a template?  Templates are instantiated to create RTFs, but <code>exsl:function</code> has an 'escape' in <a href="../result"><code>exsl:result</code></a> that means that the result of instantiating a function body can be something other than an RTF.  This is a departure from the XSLT 1.0 processing model.  An alternative is described in [<a href="http://www.pantor.com/fxpath" class="offsite">FXPath</a>].
+         </p>
+      </div>
+      <p>
+         The <code>exsl:function</code> element can only occur at the top level of the stylesheet.  The <code>exsl:function</code> element declares an extension function that is visible everywhere: the extension function is added to the function library available to the expressions and patterns used in the XSLT stylesheet.
+      </p>
+      <p>
+         An <code>exsl:function</code> element must have a <code>name</code> attribute, indicating the name of the function.  The value of the <code>name</code> attribute is a <a class="offsite" href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a>, which is expanded as described in <a class="offsite" href="http://www.w3.org/TR/xslt#qname">Section 2.4 [Qualified Names]</a> in the XSLT 1.0 Recommendation.  It is an error if the namespace URI of the expanded name of the function is null - extension functions must not be in a null namespace.
+      </p>
+      <p class="note">
+         Note: the rules on resolving qualified names entail that if no prefix is defined, the namespace URI resolves to the null namespace.  Thus, it is an error if the qualified name specified does not have a prefix.
+      </p>
+      <p>
+         It is an error if a stylesheet contains more than one <code>exsl:function</code> element with the same name and the same import precedence.  An XSLT processor may signal the error; if it does not signal the error, it must recover by using the function definition that occurs last in the stylesheet.
+      </p>
+      <p>
+         When an extension function defined with <code>exsl:function</code> is called, the content of the <code>exsl:function</code> is instantiated to give the result of the function.
+      </p>
+
+      <h3>Defining Function Arguments</h3>
+
+      <p>
+         Arguments for functions are defined with the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> element, as specified in [<a class="offsite" href="http://www.w3.org/TR/xslt#variables">11. Variables and Parameters</a>] of [<a href="http://www.w3.org/TR/xslt" class="offsite">XSLT</a>].
+      </p>
+      <div class="issue">
+         <p>
+            <strong>Issue: <code>exsl:arg</code></strong> - should arguments be specified with an extension element (e.g. <code>exsl:arg</code> or <code>exsl:argument</code>) rather than <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>? <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> is fairly overloaded as it is.
+         </p>
+      </div>
+      <p>
+         When an extension function is called, the values passed as arguments are assigned to parameters according to the position of the <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a>.  The first argument is assigned to the first parameter, the second to the second and so on.  The presence of an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates that an argument is expected for the function but does not imply that an argument <em>has</em> to be passed to the function.
+      </p>
+      <p>
+         An XSLT processor must not signal an error if an extension function is called with fewer arguments than there are parameters defined for the extension function.  It is an error to call a function with more arguments than there are parameters defined for the extension function.  An XSLT processor may signal the error; if it does not signal the error, then it must recover by ignoring the extra arguments.
+      </p>
+      <p>
+         As an example, take the following function definition:
+      </p>
+      <pre>
+&lt;exsl:function name="my:func">
+   &lt;xsl:param name="foo" />
+   &lt;xsl:param name="bar" select="false()" />
+   ...
+&lt;/exsl:function></pre>
+      <p>
+         All the following function calls are legal:
+      </p>
+      <pre>
+my:func()
+my:func('Fred')
+my:func('Fred', true())
+my:func('Fred', 'Barney')</pre>
+      <p>
+         The following function call is illegal:
+      </p>
+      <pre class="error">my:func('Fred', true(), 'Barney')</pre>
+      <p>
+         The value specified by an <a class="offsite" href="http://www.w3.org/TR/xslt#element-param"><code>xsl:param</code></a> indicates the default value for an argument if that argument is not given in a function call, but does not indicate the acceptable value types for the function.  The type of the value passed into the function can be tested with the <a href="/exsl/object-type"><code>exsl:object-type</code></a> function.
+      </p>
+
+      <h3>Function Results</h3>
+
+      <p>
+         The content of the <code>exsl:function</code> element is a template.  When the function is called, the template is instantiated to give the result of the function.  The template is instantiated with the context node from the expression in which the function was called as the current node, and with the context node list from the expression in which the function was called as the current node list. 
+      </p>
+      <p>
+         If the instantiation of the template results in the generation of result nodes, then the result of the function is a result tree fragment consisting of those nodes.  For example a call to <code>my:func</code> as below will generate a result tree fragment consisting of a root node with a single <code>foo</code> element child.
+      </p>
+      <pre>
+&lt;exsl:function name="my:func">
+   &lt;foo />
+&lt;/exsl:function></pre>
+      <p>
+         It is an error if a member of the sequence of nodes created by instantiating the template is an attribute node or a namespace node, since a root node cannot have an attribute node or a namespace node as a child. An XSLT processor may signal the error; if it does not signal the error, it must recover by not adding the attribute node or namespace node.
+      </p>
+      <p>
+         The result tree fragment that is the result of the function may be converted to a node set using the <a href="#function-node-set" class="function">exsl:node-set</a> function, to a string using the <a href="http://www.w3.org/TR/xpath#function-string" class="offsite">string</a> function, or to a number using the <a href="http://www.w3.org/TR/xpath#function-number" class="offsite">number</a> function.
+      </p>
+      <p class="note">
+         Note: Applying the <a href="http://www.w3.org/TR/xpath#function-boolean" class="offsite">boolean</a> function to the result tree fragment will always evaluate to true.
+      </p>
+      <p>
+         As discussed earlier in this section, generating result tree fragments only is not sufficient for many functions that involve manipulation of node sets.  To enable functions to return node sets (and booleans), the instantiation of the content of the <code>exsl:function</code> element may involve the instantiation of an <a href="../result"><code>exsl:result</code></a> element.
+      </p>
+   </html:div>
+</exslt:doc>
+
+<exslt:definition xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:sequence>
+      <xs:element ref="xsl:param"
+                  minOccurs="0" maxOccurs="unbounded" />
+      <xs:group ref="xsl:template" />
+   </xs:sequence>
+   <xs:attribute name="name" type="xsl:QName" use="required" />
+</exslt:definition>
+
+<exslt:implementations />
+
+<exslt:use-cases />
+
+</exslt:element>

@@ -1,0 +1,18 @@
+<!ELEMENT meta (author, rights?, changes?, keywords?, summary)>
+
+<!ELEMENT author (#PCDATA)>
+<!ATTLIST author
+   email CDATA #IMPLIED
+   url   CDATA #IMPLIED>
+
+<!ELEMENT rights ANY>
+
+<!ELEMENT changes ANY>
+<!ATTLIST changes
+   written-in (docbook|html) 'html'>
+
+<!ELEMENT keywords (#PCDATA)>
+   
+<!ELEMENT summary ANY>
+<!ATTLIST summary
+   written-in (docbook|html) 'html'>

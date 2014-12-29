@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="submissions.xsl"?>
+<!DOCTYPE function SYSTEM 'function-submission.dtd'>
+<function date="2001-06-24">
+
+   <module>regexp</module>
+   <name>match</name>
+
+   <meta>
+      <author email="chris@bayes.co.uk" 
+              url="http://www.bayes.co.uk">Chris Bayes</author>
+      <summary>
+         <p>Returns the nodes that match a regular expression.</p>
+      </summary>
+   </meta>
+   <documentation>
+      <p>
+         The <code>regexp:match</code> function lets you get hold of the substrings of the string passed as the first argument that match the captured parts of the regular expression passed as the second argument.
+      </p>
+      <p>
+         The second argument is a regular expression that follows the Javascript regular expression syntax.
+      </p>
+      <p>
+         The third argument is a string consisting of character flags to be used by the match.  If a character is present then that flag is true.  The flags are:
+      </p>
+      <ul>
+         <li><code>g</code>: global match - the submatches from all the matches in the string are returned.  If this character is not present, then only the submatches from the first match in the string are returned.</li>
+         <li><code>i</code>: case insensitive - the regular expression is treated as case insensitive.  If this character is not present, then the regular expression is case sensitive.</li>
+      </ul>
+      <p>
+         The <code>regexp:match</code> function returns a node set of <code>match</code> elements, each of whose string value is equal to a portion of the first argument string that was captured by the regular expression.  If the match is not global, the first match element has a value equal to the portion of the string matched by the entire regular expression.
+      </p>
+      <p>
+         The following example illustrates a non-global match:
+      </p>
+      <pre>
+<![CDATA[<xsl:for-each select="regExp:match('http://www.bayes.co.uk/xml/index.xml?/xml/utils/rechecker.xml', 
+                                   '(\w+):\/\/([^/:]+)(:\d*)?([^# ]*)')">
+   Part <xsl:value-of select="position()" /> = <xsl:value-of select="." />
+</xsl:for-each>]]>
+      </pre>
+      <p>
+         Gives the following result:
+      </p>
+      <pre>
+Part 1 = http://www.bayes.co.uk/xml/index.xml?/xml/utils/rechecker.xml
+Part 2 = http
+Part 3 = www.bayes.co.uk
+Part 4 =
+Part 5 = /xml/index.xml?/xml/utils/rechecker.xml
+      </pre>
+      <p>
+         The following example illustrates a global match:
+      </p>
+      <pre>
+<![CDATA[<xsl:for-each select="regExp:match('This is a test string', '(\w+)', 'g'">
+   Part <xsl:value-of select="position()" /> = <xsl:value-of select="." />
+</xsl:for-each>]]>
+      </pre>
+      <p>
+         Gives the following result:
+      </p>
+      <pre>
+Part 1 = This
+Part 2 = is
+Part 3 = a
+Part 4 = test
+Part 5 = string
+      </pre>
+      <p>
+         The following example illustrates another global match:
+      </p>
+      <pre>
+<![CDATA[<xsl:for-each select="regExp:match('This is a test string', '([a-z])+ ', 'g')">
+   Part <xsl:value-of select="position()" /> = <xsl:value-of select="." />
+</xsl:for-each>]]>
+      </pre>
+      <p>
+         Gives the following result:
+      </p>
+      <pre>
+Part 1 = his
+Part 2 = is
+Part 3 = a
+Part 4 = test
+      </pre>
+      <p>
+         The following example illustrates a global, case-insensitive match:
+      </p>
+      <pre>
+<![CDATA[<xsl:for-each select="regExp:match('This is a test string', '([a-z])+ ', 'gi')">
+   Part <xsl:value-of select="position()" /> = <xsl:value-of select="." />
+</xsl:for-each>]]>
+      </pre>
+      <p>
+         Gives the following result:
+      </p>
+      <pre>
+Part 1 = This
+Part 2 = is
+Part 3 = a
+Part 4 = test
+      </pre>
+   </documentation>
+   <definition>
+      <return type="object" />
+		<arg name="string" type="string" default="''" optional="no" />
+		<arg name="regExp" type="string" default="''" optional="no" />
+		<arg name="flags" type="string" default="''" optional="yes" />
+   </definition>
+
+</function>

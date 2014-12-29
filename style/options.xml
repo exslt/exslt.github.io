@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<options xml:space="preserve">
+   <copy>copy <from /> <to /></copy>
+   <cd>cd <to /></cd>
+   <xslt>saxon <input /> <stylesheet /></xslt>
+   <zip>wzzip -P -o <output /> @<file /></zip>
+</options>
